@@ -2,7 +2,7 @@
 
 = Introduction =
 
-Aici va fi documentatia proiectului
+Aici va fi documentatia proiectului!!!
 
 
 = Details =
