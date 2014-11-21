@@ -2,12 +2,7 @@
 
 = Tool-uri =
 
-TortoiseSVN [http://tortoisesvn.net/downloads.html]
-SVN URL: https://ebs-academy-at-ulbs-2014.googlecode.com/svn/trunk/
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+||[http://tortoisesvn.net/downloads.html TortoiseSVN]||Pentru lucrul cu fisiere versionate din Windows Explorer||
+||[https://ebs-academy-at-ulbs-2014.googlecode.com/svn/trunk/ SVN]||Adresa serverului de SVN||
+||[http://dev.mysql.com/downloads/workbench/ MYSQL Workbench]||Pentru administrat baza de date MySQL||
+||[https://www.apachefriends.org/index.html xampp]||Pentru a instala Apache, PHP, MySQL pe calculatorul local||
