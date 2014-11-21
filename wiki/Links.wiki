@@ -5,3 +5,4 @@
 ||[http://10.224.15.13/index.php]||Adresa serverului web||
 ||10.224.15.13 port 3306|| MySQL (user: admin, pass: ebsacademy2014)||
 ||[https://secure.ebsromania.ro Secure EBS Romania]||Pentru startarea VPN-ului||
+||https://docs.google.com/spreadsheets/d/1876QyOkLPSvFTHcW-Ku1CcOht27DCajn40S77SJB1BQ/edit?usp=sharing Excel Doc||Lista cu prezenta||
