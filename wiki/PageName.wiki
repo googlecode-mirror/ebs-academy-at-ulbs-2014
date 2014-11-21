@@ -1,6 +1,0 @@
-= EBS Academy @ ULBS 2014 =
-
-== Link-uri utile ==
-TortoiseSVN http://tortoisesvn.net/downloads.html
-
-SVN URL: https://ebs-academy-at-ulbs-2014.googlecode.com/svn/trunk/ 
