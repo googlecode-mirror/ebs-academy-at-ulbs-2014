@@ -1,0 +1,7 @@
+#summary Lista cu link-uri folosite
+
+
+[https://ebs-academy-at-ulbs-2014.googlecode.com/svn/trunk/] Adresa serverului de SVN
+----
+[http://10.224.15.13/index.php] Adresa serverului web
+10.224.15.13 port 3306 MySQL
