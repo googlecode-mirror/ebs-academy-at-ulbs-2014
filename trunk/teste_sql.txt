@@ -1,0 +1,63 @@
+//tabela pentru gestionarea testelor
+
+CREATE TABLE `test`.`test` (
+  `ID_TEST` INT NOT NULL AUTO_INCREMENT,
+  `ID_PROFESOR` INT NULL,
+  `ID_MATERIE` INT NULL,
+  `NUME_TEST` VARCHAR(45) NULL,
+  `TIPUL_TESTULUI` INT NULL,
+  `DATA_ADAUGARII` DATETIME NULL,
+  PRIMARY KEY (`ID_TEST`));
+
+//------------------------------------------------------------
+
+//tabelele pentru gestionarea intrebarilor
+
+CREATE TABLE `test`.`intrebare` (
+  `ID_INTREBARE` INT NOT NULL AUTO_INCREMENT,
+  `ID_TEST` INT NOT NULL,
+  `INTREBAREA` VARCHAR(45) NULL,
+  `DIFICULTATEA_INTREBARII` INT NULL,
+  `PUNCTAJUL_INTREBARII` FLOAT NULL,
+  `DATA_ADAUGARII` DATETIME NULL,
+  PRIMARY KEY (`ID_INTREBARE`));
+
+  CREATE TABLE `test`.`raspuns_corect` (
+  `ID_RASPUNS_CORECT` INT NOT NULL AUTO_INCREMENT,
+  `ID_INTREBARE` INT NOT NULL,
+  `RASPUNSUL_CORECT` INT NULL,
+  PRIMARY KEY (`ID_RASPUNS_CORECT`));
+
+CREATE TABLE `test`.`raspuns_posibil` (
+  `ID_RASPUNS_POSIBIL` INT NOT NULL AUTO_INCREMENT,
+  `ID_INTREBARE` INT NOT NULL,
+  `RASPUNS_POSIBIL` INT NULL,
+  PRIMARY KEY (`ID_RASPUNS_POSIBIL`));
+
+//------------------------------------------------------------
+
+//tabel pentru sustinearea testului
+
+CREATE TABLE `test`.`raspuns_student` (
+  `ID_RASPUNS_STUDENT` INT NOT NULL AUTO_INCREMENT,
+  `ID_STUDENT` INT NOT NULL,
+  `ID_INTREBARE` INT NOT NULL,
+  `RASPUNS_STUDENT` INT NULL,
+  `PUNCTAJ_OBTINUT` FLOAT NULL,
+  `DATA_RASPUNS` DATETIME NULL,
+  PRIMARY KEY (`ID_RASPUNS_STUDENT`));
+
+//------------------------------------------------------------
+
+//tabel rapoarte finale
+
+CREATE TABLE `test`.`raport_final` (
+  `ID_RAPORT_FINAL` INT NOT NULL AUTO_INCREMENT,
+  `ID_STUDENT` INT NOT NULL,
+  `ID_TEST` INT NOT NULL,
+  `NOTA_FINALA` INT NULL,
+  `DATA_SUSTINERII_TESTULUI` DATETIME NULL,
+  PRIMARY KEY (`ID_RAPORT_FINAL`));
+
+
+
