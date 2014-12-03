@@ -1,63 +1,49 @@
-//tabela pentru gestionarea testelor
+//SQL pentru creearea tabelelor test, intrebare, raspuns
 
 CREATE TABLE `test`.`test` (
   `ID_TEST` INT NOT NULL AUTO_INCREMENT,
-  `ID_PROFESOR` INT NULL,
   `ID_MATERIE` INT NULL,
-  `NUME_TEST` VARCHAR(45) NULL,
-  `TIPUL_TESTULUI` INT NULL,
-  `DATA_ADAUGARII` DATETIME NULL,
+  `ID_USER` INT NULL,
+  `NUME` VARCHAR(45) NULL,
+  `TIP` INT NULL,
+  `DESCRIERE` VARCHAR(45) NULL,
+  `DATA` DATETIME NULL,
   PRIMARY KEY (`ID_TEST`));
 
-//------------------------------------------------------------
 
-//tabelele pentru gestionarea intrebarilor
-
-CREATE TABLE `test`.`intrebare` (
+  CREATE TABLE `test`.`intrebare` (
   `ID_INTREBARE` INT NOT NULL AUTO_INCREMENT,
-  `ID_TEST` INT NOT NULL,
+  `ID_TEST` INT NULL,
   `INTREBAREA` VARCHAR(45) NULL,
-  `DIFICULTATEA_INTREBARII` INT NULL,
-  `PUNCTAJUL_INTREBARII` FLOAT NULL,
-  `DATA_ADAUGARII` DATETIME NULL,
+  `PUNCTAJ_INTREBARE` FLOAT NULL,
+  `DATA_INTREBARII` DATETIME NULL,
   PRIMARY KEY (`ID_INTREBARE`));
 
-  CREATE TABLE `test`.`raspuns_corect` (
-  `ID_RASPUNS_CORECT` INT NOT NULL AUTO_INCREMENT,
-  `ID_INTREBARE` INT NOT NULL,
-  `RASPUNSUL_CORECT` INT NULL,
-  PRIMARY KEY (`ID_RASPUNS_CORECT`));
 
-CREATE TABLE `test`.`raspuns_posibil` (
-  `ID_RASPUNS_POSIBIL` INT NOT NULL AUTO_INCREMENT,
-  `ID_INTREBARE` INT NOT NULL,
-  `RASPUNS_POSIBIL` INT NULL,
-  PRIMARY KEY (`ID_RASPUNS_POSIBIL`));
+  CREATE TABLE `test`.`raspunsuri` (
+  `ID_RASPUNS` INT NOT NULL AUTO_INCREMENT,
+  `ID_INTREBARE` INT NULL,
+  `RASPUNS` VARCHAR(45) NULL,
+  `CORECT` VARCHAR(45) NULL,
+  PRIMARY KEY (`ID_RASPUNS`));
 
-//------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
 
-//tabel pentru sustinearea testului
+//SQL pentru creearea tabelelor de legatura(user_test si user_raspuns)
 
-CREATE TABLE `test`.`raspuns_student` (
-  `ID_RASPUNS_STUDENT` INT NOT NULL AUTO_INCREMENT,
-  `ID_STUDENT` INT NOT NULL,
-  `ID_INTREBARE` INT NOT NULL,
-  `RASPUNS_STUDENT` INT NULL,
-  `PUNCTAJ_OBTINUT` FLOAT NULL,
-  `DATA_RASPUNS` DATETIME NULL,
-  PRIMARY KEY (`ID_RASPUNS_STUDENT`));
-
-//------------------------------------------------------------
-
-//tabel rapoarte finale
-
-CREATE TABLE `test`.`raport_final` (
-  `ID_RAPORT_FINAL` INT NOT NULL AUTO_INCREMENT,
-  `ID_STUDENT` INT NOT NULL,
-  `ID_TEST` INT NOT NULL,
-  `NOTA_FINALA` INT NULL,
-  `DATA_SUSTINERII_TESTULUI` DATETIME NULL,
-  PRIMARY KEY (`ID_RAPORT_FINAL`));
+  CREATE TABLE `test`.`user_test` (
+  `ID_USER_TEST` INT NOT NULL AUTO_INCREMENT,
+  `ID_USER` INT NULL,
+  `ID_TEST` INT NULL,
+  `PUNCTAJ` VARCHAR(45) NULL,
+  `DATA` DATE NULL,
+  PRIMARY KEY (`ID_USER_TEST`));
 
 
-
+  CREATE TABLE `test`.`user_raspuns` (
+  `ID_USER_RASPUNS` INT NOT NULL AUTO_INCREMENT,
+  `ID_USER_TEST` INT NULL,
+  `RASPUNSUL` VARCHAR(45) NULL,
+  `PUNCTAJ_OBTINUT` VARCHAR(45) NULL,
+  `DATA` DATE NULL,
+  PRIMARY KEY (`ID_USER_RASPUNS`));
