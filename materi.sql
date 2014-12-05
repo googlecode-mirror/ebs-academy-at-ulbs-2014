@@ -3,7 +3,7 @@ create table Materii
 id int NOT NULL AUTO_INCREMENT,
 id_user int,
 credite int,
-denumire varchar(50),
+denumire varchar(100),
 primary key(id),
 foreign key(id_user)references user(id)
 );
