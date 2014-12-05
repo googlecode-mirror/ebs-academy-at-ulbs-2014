@@ -1,4 +1,4 @@
-create table materii
+create table Materii
 (
 id int,
 id_prof int,
@@ -9,7 +9,7 @@ primary key(id),
 foreign key(id_prof)references profesori(id)
 );
 
-create table materii_grupe
+create table Materii_grupe
 (
 id int, 
 id_materie int,
