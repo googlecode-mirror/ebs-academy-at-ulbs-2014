@@ -1,14 +1,14 @@
-CREATE TABLE IF NOT EXISTS `prezenta_user` (
-`id` int(11)  NULL,
-  `id_prezenta` int(11)  NULL,
-  `id_user` int(11) NULL
-  PRIMARY KEY (`id`)
+CREATE TABLE `prezenta` (
+  `ID_PREZENTA` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_MATERIE` int(11) NOT NULL,
+  `DATA` date NOT NULL,
+  `TIP_PREZENTA` varchar(45) CHARACTER SET dec8 NOT NULL,
+  PRIMARY KEY (`ID_PREZENTA`)
 )
 
-CREATE TABLE IF NOT EXISTS `prezenta` (
-`id` int(11)  NULL,
-  `id_materie` int(11)  NULL,
-  `data` date  NULL,
-  `tip_prezenta` varchar(15)  NULL
-  PRIMARY KEY (`id`)
-)
+CREATE TABLE `prezenta_user` (
+  `ID_PREZENTA_USER` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_PREZENTA` int(11) NOT NULL,
+  `ID_USER` int(11) NOT NULL,
+  PRIMARY KEY (`ID_PREZENTA_USER`)
+) 
