@@ -1,10 +1,9 @@
-CREATE TABLE `ebs`.`examen` (
+CREATE TABLE `ULBSPlatform`.`examen` (
  
  `ID` INT NOT NULL,
  
  `IDGRUPA` INT NULL,
- 
-  
+   
  `IDMATERIE` INT NULL,
 
   `DATA` DATETIME NULL,
