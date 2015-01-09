@@ -1,0 +1,18 @@
+1.Login:
+	-gestionare useri ( 3 roluri : student, profesor, admin)
+	-login in aplicatie
+	-gestiune grupe/materii/an/specializari
+
+2.Materii
+	-informatii generale
+	-teme licenta (+ atribuire, concurentiala)
+	-news
+	-suport curs (pdf, jpg, ppt)
+	-prezenta (grupa)(profesor)
+	-data examen(grupa, specializare)(profesor)
+
+3.Teste
+	-gestionare teste (profesor)
+	-gestionare intrebari (profesor)
+	-sustinere test (student)
+	-rapoarte finale

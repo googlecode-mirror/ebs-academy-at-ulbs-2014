@@ -1,0 +1,21 @@
+			ULBSPlatform
+
+1.Login:
+	-user(gestiune)
+	-roluri(student/prof)(gestiune)
+
+2.user: STUDENT
+	-informatii(news)(grupa/specializare/an)
+	-teme de licenta(grupare pe profesor)
+	-cursuri facultative
+		*prezente
+	-platforma comunicare
+  user: PROFESOR
+	-teme licenta
+	-news
+	-raport prezente
+	-suport curs
+
+3.Teste:
+	-gestionare intrebari
+	-raport final
