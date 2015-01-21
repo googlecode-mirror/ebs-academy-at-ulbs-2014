@@ -5,7 +5,7 @@
 
 <body>
 
-        <form method="post" action="adaugare_user.tpl.php"> <input type="submit" value="Adauga">
+        <form method="post" action="adaugare_user.tpl.php"> <input type="submit" value="Adauga"></form>
         <form method="post" action="sterge_user.tpl.php"> <input type="submit" value="Sterge">
 
         <TABLE>
