@@ -1,0 +1,17 @@
+table{
+border:1px solid black;
+border-collapse:collapse;
+width:650px;
+margin:auto;
+margin-top:10px;
+text-align:center;
+}
+
+th{
+border-bottom:1px solid black;
+}
+
+.buttons{
+text-indent:350px;
+margin-bottom:5px;
+}
