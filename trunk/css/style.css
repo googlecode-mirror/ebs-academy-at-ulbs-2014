@@ -34,4 +34,36 @@ border-width: 1px;
 height:25px;
 }
 
+.col_login1{
+float:left; 
+width:100px;
+text-indent:5px;  
+
+height:25px;
+}
+
+.col_login2{
+float:left; 
+width:200px;
+text-indent:5px;  
+
+height:25px;
+}
+.recover{
+float:left; 
+width:300px;
+text-indent:5px;  
+height:25px;
+font-family:Arial;
+font-size:0.9em;
+}
+
+.login_div{
+margin-left:10px;
+	width:350px;
+}
+.login_text{
+	font-family:Arial;
+font-size:1.1em;
+}
 

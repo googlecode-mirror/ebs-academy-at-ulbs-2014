@@ -1,36 +1,43 @@
-<HTML>
-<HEAD>
-    <TITLE>Login</TITLE>
-</HEAD>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/> 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
 
-<body>
-<h1> Va rugam introduceti datele de logare: </h1>
-    <table>
-                      <form method="POST" action="verificare.php">
-                            <tr>
-                                <td>Email</td>
-                                <td> <input type="email" name="email" /></td>
-                            </tr>
+    <body>
 
-                            <tr>
-                                <td>Password</td>
-                                <td><input type="password" name="password" /></td>
-                            </tr>
-                            
-                            
-                            <tr>
-                                <td><input type="submit" value="Submit" /></td>
-                                <td><input type="reset" value="Reset" /></td>
-                            </tr>
-							<tr>
-                               <td colspan="2" ><a href="#">Recover password</a></td>
-				
-                                
-                            </tr>
-                      </form>     
 
-                      
-    </table>
+        <form action="check_login.php" method="POST">
+            <div class="login_div">
+                <div class="login_text"> Va rugam introduceti datele de logare: </div>
+                <br />
+                <div>
+                    <div class="col_login1">Email</div>
+                    <div class="col_login2"><input type="email" name="email"/></div>
 
-</body>
-</HTML>
+                </div>
+                <div style="clear:both;">
+                    <div class="col_login1">Password</div>
+                    <div class="col_login2"><input type="password" name="password"/></div>
+
+                </div>
+
+                <div style="clear:both;">
+
+                    <div class="col_login1"><input type="submit" value="Trimite"/></div>
+                    <div class="col_login2"><input type="reset" value="Reseteaza"/></div>
+
+                </div>
+                <div style="clear:both;">
+
+                    <div class="recover"><a href="#"> Recover password</a></div>
+
+                </div>
+            </div>
+        </form>
+
+
+    </body>
+</html>
