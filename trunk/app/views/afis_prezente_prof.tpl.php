@@ -1,68 +1,90 @@
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+    <head>
+        <script>
+            function checkAll(bx) {
+                var cbs = document.getElementsByTagName('input');
+                for (var i = 0; i < cbs.length; i++) {
+                    if (cbs[i].type == 'checkbox') {
+                        cbs[i].checked = bx.checked;
+                    }
+                }
+            }
+        </script>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/> 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Prezente</title>
 
-	<link href="css/style.css" rel="stylesheet" type="text/css"/> 
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Prezente</title>
 
+    </head>
 
-</head>
+    <body>
 
-<body>
-			
-			<?php 
-            $prezenta[0][0]="ebs";
-			$prezenta[0][1]="p";
-			$prezenta[0][2]="23-11-2014";
-			$prezenta[1][0]="ebs";
-			$prezenta[1][1]="p";
-			$prezenta[1][2]="27-11-2014";
-			$prezenta[2][0]="ebs";
-			$prezenta[2][1]="p";
-			$prezenta[2][2]="23-01-2015";
-           
+        <?php
+        include 'connect.php';
+        
+        
+        
+        $prezenta = array
+            (
+            array('id' => 1,
+                'mat' => 'ebs',
+                'prez' => 'p',
+                'data' => '24-11-2014'),
+            array('id' => 2,
+                'mat' => 'ebs',
+                'prez' => 'p',
+                'data' => '27-11-2014'),
+            array('id' => 3,
+                'mat' => 'ebs',
+                'prez' => 'p',
+                'data' => '28-11-2014')
+        );
         ?>
-				
-				<div>
-				
-					<div class="crt"> Nr Crt. </div>
-					<div class="mat"> Nume Materie </div>
-					<div class="prezenta"> Prezenta </div>
-					<div class="data"> Data </div>
-					<div class="sterge"> Sterge </div>
-					<div class="modifica"> Modifica </div>
-					
-				</div>
-				
-			<?php 
-			$i=1;
-			for ($key_Number = 0; $key_Number <= 2; $key_Number++) {
-            echo '<div style="clear:both;">
-						<div class="crt">'.$i.'</div>
-						<div class="mat">'.$prezenta[$key_Number][0].'</div>
-						<div class="prezenta">'.$prezenta[$key_Number][1].'</div>
-						<div class="data">'.$prezenta[$key_Number][2].'</div>
-						<div class="sterge">
-																<form  method="post" action="sterge_prezenta.tpl.php">
-																<input type="submit" value="Sterge">
-																</form></div>
-						<div class="modifica">
-																<form  method="post" action="modifica_prezenta.tpl.php">
-																<input type="submit" value="Modifica">
-																</form></div>
-				</div>
+        <form action="script_prezente.tpl.php" method="POST">
+            <div>
+                <div class="afis_checkbox"> </div>
+                <div class="crt"> Nr Crt. </div>
+                <div class="mat"> Nume Materie </div>
+                <div class="prezenta"> Prezenta </div>
+                <div class="data"> Data </div>
+                <div class="sterge"> Sterge </div>
+                <div class="modifica"> Modifica </div>
+
+            </div>
+
+            <div style="clear:both;">
+                <div class="afis_checkbox"><input type="checkbox"  onclick="checkAll(this)"/>Select all  </div>
+                <div class="crt"> </div>
+                <div class="mat">  </div>
+                <div class="prezenta"></div>
+                <div class="data"> </div>
+                <div class="sterge"> </div>
+                <div class="modifica">  </div>
+            </div>
+
+<?php
+$i = 1;
+for ($key_Number = 0; $key_Number < count($prezenta); $key_Number++) {
+    echo '<div style="clear:both;">
+            <div class="afis_checkbox"> <input type="checkbox" name="' . $prezenta[$key_Number]['id'] . '"/></div>
+            <div class="crt">' . $i . '</div>
+            <div class="mat">' . $prezenta[$key_Number]['mat'] . '</div>
+            <div class="prezenta">' . $prezenta[$key_Number]['prez'] . '</div>
+            <div class="data">' . $prezenta[$key_Number]['data'] . '</div>
+            <div class="sterge"><input type="submit" name="sterge"  value="Sterge"/></div>
+            <div class="modifica"><input type="submit" name="modifica"  value="Modifica"/></div>
+	</div>
 				';
-			
-			$i++;
-    }
-    ?>
-				
-		
-			
-		
-		</div>
-		
-</body>
+
+    $i++;
+}
+?>
+
+            </div>
+        </form>
+
+
+    </body>
 </html>
