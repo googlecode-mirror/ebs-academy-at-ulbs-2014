@@ -10,10 +10,7 @@
 
 <body>
 
-        <form class="buttons" method="post" action="adaugare_user.tpl.php"> <input type="submit" value="Adauga"></form>
-        <form class="buttons" method="post" action="sterge_user.tpl.php"> <input type="submit" value="Sterge"></form>
-
-        <?php 
+<?php 
             $stud[0][0]="pop@email";
             $stud[0][1]="Popescu";
             $stud[0][2]="Vlad";
@@ -26,6 +23,10 @@
             $stud[1][4]="23-11-1993";
         ?>
 
+        <form class="buttons" method="post" action="adaugare_user.tpl.php"> <input type="submit" value="Adauga"></form>
+        <form class="buttons" method="post" action="sterge_user.tpl.php"> <input type="submit" value="Sterge"></form>
+
+        
 
         <table>
             <tr>
