@@ -41,7 +41,14 @@
             
                 <!--<td><input type="checkbox"></td> -->
                 <?php for ($key_Number = 0; $key_Number <= 1; $key_Number++) {
-            echo "<tr><td><input type=\"checkbox\"></td><td>".$stud[$key_Number][0]."</td><td>".$stud[$key_Number][1]."</td><td>".$stud[$key_Number][2]."</td><td>".$stud[$key_Number][3]."</td><td>".$stud[$key_Number][4]."</td><td><form method=\"post\" action=\"modificare_user.tpl.php\"><input type=\"submit\" value=\"Modifica\"></form></td><td><form method=\"post\" action=\"sterge_user.tpl.php\"> <input type=\"submit\" value=\"Sterge\"></form></td></tr>";
+					echo "<tr><td><input type=\"checkbox\">
+					</td><td>".$stud[$key_Number][0]."</td>
+					<td>".$stud[$key_Number][1]."</td>
+					<td>".$stud[$key_Number][2]."</td>
+					<td>".$stud[$key_Number][3]."</td>
+					<td>".$stud[$key_Number][4]."</td>
+					<td><form method=\"post\" action=\"modificare_user.tpl.php\"><input type=\"submit\" value=\"Modifica\"></form></td>
+					<td><form method=\"post\" action=\"sterge_user.tpl.php\"> <input type=\"submit\" value=\"Sterge\"></form></td></tr>";
     }
     ?>
             
