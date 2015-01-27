@@ -23,9 +23,14 @@
 
         <?php
         include 'connect.php';
-        
-        
-        
+        $sql = "
+        SELECT `prezenta`.`ID`, `materii`.`DENUMIRE`, `prezenta`.`DATA`, `prezenta`.`TIP_PREZENTA`
+        FROM ulbsplatform.prezenta_user, ulbsplatform.prezenta, ulbsplatform.materii
+        WHERE `prezenta`.`ID` = `prezenta_user`.`ID_PREZENTA`
+                and `materii`.`ID` = `prezenta`.`ID_MATERIE`
+                and `prezenta_user`.`ID_USER`=1";//trebuie pus id-ul userului din sesiune
+
+
         $prezenta = array
             (
             array('id' => 1,
@@ -64,10 +69,12 @@
                 <div class="modifica">  </div>
             </div>
 
-<?php
-$i = 1;
-for ($key_Number = 0; $key_Number < count($prezenta); $key_Number++) {
-    echo '<div style="clear:both;">
+
+            <?php
+            $i = 1;
+
+            for ($key_Number = 0; $key_Number < count($prezenta); $key_Number++) {
+                echo '<div style="clear:both;">
             <div class="afis_checkbox"> <input type="checkbox" name="' . $prezenta[$key_Number]['id'] . '"/></div>
             <div class="crt">' . $i . '</div>
             <div class="mat">' . $prezenta[$key_Number]['mat'] . '</div>
@@ -78,11 +85,32 @@ for ($key_Number = 0; $key_Number < count($prezenta); $key_Number++) {
 	</div>
 				';
 
-    $i++;
-}
-?>
-
+                $i++;
+            }
+            ?>
+            <?php
+            $result = $conn->query($sql);
+            while ($row = mysqli_fetch_array($result)) {
+                 $originalDate = $row["DATA"];
+                 $newDate = date("d-m-Y", strtotime($originalDate));
+                echo '<div style="clear:both;">
+            <div class="afis_checkbox"> <input type="checkbox" name="' . $row["ID"] . '"/></div>
+            <div class="crt">' . $i . '</div>
+            <div class="mat">' . $row["DENUMIRE"] . '</div>
+            <div class="prezenta">' . $row["TIP_PREZENTA"] . '</div>
+            <div class="data">' . $newDate . '</div>
+            <div class="sterge"><input type="submit" name="sterge"  value="Sterge"/></div>
+            <div class="modifica"><input type="submit" name="modifica"  value="Modifica"/></div>
             </div>
+            
+';
+
+                $i++;
+            }
+            $conn->close();
+            ?>
+
+            
         </form>
 
 
