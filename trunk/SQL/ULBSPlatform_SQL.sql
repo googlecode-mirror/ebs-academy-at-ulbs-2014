@@ -59,7 +59,8 @@ CREATE TABLE `ULBSPlatform`.`Prezenta_User` (
 	  ID INT(11) NOT NULL AUTO_INCREMENT,
 	  ID_PREZENTA INT(11) NOT NULL,
 	  ID_USER INT(11) NOT NULL,
-	  PRIMARY KEY (`ID`)
+	  PRIMARY KEY (`ID`),
+	  FOREIGN KEY(ID_PREZENTA)REFERENCES `ULBSPlatform`.Prezenta(ID)
 ); 
 
 #------------Teme licenta-------------------------------
