@@ -8,9 +8,7 @@
 	<link href="css/style.css" rel="stylesheet" type="text/css"/> 
 	
 </head>
-
 <body>
 	<h1>Va multumim ca v-ati facut cont!</h1>
-	
 </body>
 </html>
