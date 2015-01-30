@@ -14,24 +14,30 @@ error_reporting(E_ALL);
 // Madatory KISSMVC Settings (please configure)
 //===============================================
 define('APP_PATH','app/'); //with trailing slash pls
-define('WEB_FOLDER','/ebs-academy-at-ulbs-2014/'); //with trailing slash pls
+define('WEB_FOLDER','/ulbsPlatform/'); //with trailing slash pls
 
 //===============================================
 // Other Settings
 //===============================================
-$GLOBALS['sitename']='KISSMVC - Simple PHP MVC Framework';
+$GLOBALS['sitename']='ULBS Platform';
+//===============================================
+// Other Settings
+//===============================================
+define('WEB_DOMAIN','http://localhost'); //with http:// and NO trailing slash pls
+define('VIEW_PATH','app/views/'); //with trailing slash pls
 
 //===============================================
 // Includes
 //===============================================
 require('kissmvc.php');
+require(APP_PATH.'inc/functions.php');
 
 //===============================================
 // Session
 //===============================================
-/*
+
 session_start();
-*/
+
 //===============================================
 // Uncaught Exception Handling
 //===============================================s
@@ -53,25 +59,24 @@ function custom_error($msg='') {
 //===============================================
 // Database
 //===============================================
-/*
+
 function getdbh() {
   if (!isset($GLOBALS['dbh']))
     try {
-      $GLOBALS['dbh'] = new PDO('sqlite:'.APP_PATH.'db/kissmvc.sqlite');
-      //$GLOBALS['dbh'] = new PDO('mysql:host=localhost;dbname=dbname', 'username', 'password');
+      //$GLOBALS['dbh'] = new PDO('sqlite:'.APP_PATH.'db/kissmvc.sqlite');
+      $GLOBALS['dbh'] = new PDO('mysql:host=10.224.15.13;dbname=ULBSPlatform', 'admin', 'ebsacademy2014');
 
     } catch (PDOException $e) {
       die('Connection failed: '.$e->getMessage());
     }
   return $GLOBALS['dbh'];
 }
-*/
 
 //===============================================
 // Autoloading for Business Classes
 //===============================================
 // Assumes Model Classes start with capital letters and Helpers start with lower case letters
-/*
+
 function __autoload($classname) {
   $a=$classname[0];
   if ($a >= 'A' && $a <='Z')
@@ -79,7 +84,7 @@ function __autoload($classname) {
   else
     require_once(APP_PATH.'helpers/'.$classname.'.php');  
 }
-*/
+
 
 //===============================================
 // Start the controller
