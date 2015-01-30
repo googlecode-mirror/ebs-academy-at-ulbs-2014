@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Login</title>
-        <link href="css/style.css" rel="stylesheet" type="text/css"/> 
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    </head>
-
-    <body>
 
 
-        <form action="check_login.php" method="POST">
+        <form action="<?php echo myUrl('ops/check_login'); ?>" method="POST">
             <div class="login_div">
                 <div class="login_text"> Va rugam introduceti datele de logare: </div>
                 <br />
@@ -38,6 +29,3 @@
             </div>
         </form>
 
-
-    </body>
-</html>
