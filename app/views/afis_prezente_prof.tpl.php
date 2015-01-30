@@ -28,24 +28,7 @@
         FROM ulbsplatform.prezenta_user, ulbsplatform.prezenta, ulbsplatform.materii
         WHERE `prezenta`.`ID` = `prezenta_user`.`ID_PREZENTA`
                 and `materii`.`ID` = `prezenta`.`ID_MATERIE`
-                and `prezenta_user`.`ID_USER`=1";//trebuie pus id-ul userului din sesiune
-
-
-        $prezenta = array
-            (
-            array('id' => 1,
-                'mat' => 'ebs',
-                'prez' => 'p',
-                'data' => '24-11-2014'),
-            array('id' => 2,
-                'mat' => 'ebs',
-                'prez' => 'p',
-                'data' => '27-11-2014'),
-            array('id' => 3,
-                'mat' => 'ebs',
-                'prez' => 'p',
-                'data' => '28-11-2014')
-        );
+                and `prezenta_user`.`ID_USER`=1"; //trebuie pus id-ul userului din sesiune
         ?>
         <form action="script_prezente.tpl.php" method="POST">
             <div>
@@ -59,41 +42,18 @@
 
             </div>
 
-            <div style="clear:both;">
-                <div class="afis_checkbox"><input type="checkbox"  onclick="checkAll(this)"/>Select all  </div>
-                <div class="crt"> </div>
-                <div class="mat">  </div>
-                <div class="prezenta"></div>
-                <div class="data"> </div>
-                <div class="sterge"> </div>
-                <div class="modifica">  </div>
-            </div>
 
 
-            <?php
-            $i = 1;
 
-            for ($key_Number = 0; $key_Number < count($prezenta); $key_Number++) {
-                echo '<div style="clear:both;">
-            <div class="afis_checkbox"> <input type="checkbox" name="' . $prezenta[$key_Number]['id'] . '"/></div>
-            <div class="crt">' . $i . '</div>
-            <div class="mat">' . $prezenta[$key_Number]['mat'] . '</div>
-            <div class="prezenta">' . $prezenta[$key_Number]['prez'] . '</div>
-            <div class="data">' . $prezenta[$key_Number]['data'] . '</div>
-            <div class="sterge"><input type="submit" name="sterge"  value="Sterge"/></div>
-            <div class="modifica"><input type="submit" name="modifica"  value="Modifica"/></div>
-	</div>
-				';
 
-                $i++;
-            }
-            ?>
-            <?php
-            $result = $conn->query($sql);
-            while ($row = mysqli_fetch_array($result)) {
-                 $originalDate = $row["DATA"];
-                 $newDate = date("d-m-Y", strtotime($originalDate));
-                echo '<div style="clear:both;">
+
+<?php
+$result = $conn->query($sql);
+$i = 1;
+while ($row = mysqli_fetch_array($result)) {
+    $originalDate = $row["DATA"];
+    $newDate = date("d-m-Y", strtotime($originalDate));
+    echo '<div style="clear:both;">
             <div class="afis_checkbox"> <input type="checkbox" name="' . $row["ID"] . '"/></div>
             <div class="crt">' . $i . '</div>
             <div class="mat">' . $row["DENUMIRE"] . '</div>
@@ -105,12 +65,20 @@
             
 ';
 
-                $i++;
-            }
-            $conn->close();
-            ?>
+    $i++;
+}
+$conn->close();
+?>
+            <div style="clear:both;">
+                <div class="afis_checkbox"><input type="checkbox"  onclick="checkAll(this)"/>Select all  </div>
+                <div class="crt"> </div>
+                <div class="mat">  </div>
+                <div class="prezenta"></div>
+                <div class="data"> </div>
+                <div class="sterge"> <input type="submit" name="sterge"  value="Delete all"/></div>
+                <div class="modifica"> <input type="submit" name="modifica"  value="Update all"/> </div>
+            </div>
 
-            
         </form>
 
 
