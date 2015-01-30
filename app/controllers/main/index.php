@@ -1,7 +1,8 @@
 <?php
-function _index($msg='Hello World!') {
+function _index() {
+//	$data['msg'][]=View::do_fetch(VIEW_PATH.'login.tpl.php');
+//	View::do_dump(VIEW_PATH.'layout.php',$data);
+
 	isUserLoggedIn();
-  $view = new View(APP_PATH.'views/index_logat.tpl.php');
-  $view->set('msg',$msg);
-  $view->dump();
+
 }

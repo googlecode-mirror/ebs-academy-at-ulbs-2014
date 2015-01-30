@@ -5,7 +5,7 @@
 </head>
 <body>
 	<?php include "header.tpl.php";?>
-	<h1><?php echo $msg;?></h1>
+	<?php echo (isset($msg) && is_array($msg)) ? implode("\n",$msg) : ''?>
 	<?php include "footer.tpl.php";?>
 </body>
 </html>
