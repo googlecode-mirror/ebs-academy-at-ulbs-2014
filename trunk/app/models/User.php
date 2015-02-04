@@ -22,8 +22,8 @@ class User {
                                     `user`.`PAROLA`
                                 FROM `ulbsplatform`.`user`
                                 WHERE EMAIL=:email AND PAROLA=:pass;');
-        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-        $stmt->bindValue(':pass', $pass, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':pass', $pass, PDO::PARAM_STR);
         $stmt->execute();
 
         if ($stmt->fetch()) {
@@ -59,7 +59,7 @@ class User {
                                 `user`.`STATUS`
                             FROM `ulbsplatform`.`user`
                             WHERE ID=:id;');
-        $stmt->bindValue(':id', $user_id, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
         $stmt->execute(array('id' => $user_id));
 
         while ($row = $stmt->fetch()) {
@@ -92,7 +92,39 @@ class User {
                                 `user`.`STATUS`
                             FROM `ulbsplatform`.`user`;');
 
-        $stmt->execute();
+        //$stmt->execute();
+
+
+        return $stmt->execute() ? $stmt->fetchAll() : FALSE;
+    }
+
+    /**
+     * 
+     * Return users with selected status <br>
+     * Campuri: <br>
+     * NUME <br>
+     * PRENUME <br>
+     * EMAIL <br>
+     * TIP <br>
+     * DATAADAUGARII <br>
+     * STATUS 
+     * @return array
+     */
+    public function fetchByStatus($status) {
+        getdbh();
+        $db = $GLOBALS['dbh'];
+
+        $stmt = $db->prepare('SELECT
+                                `user`.`EMAIL`,
+                                `user`.`NUME`,
+                                `user`.`PRENUME`,
+                                `user`.`TIP`,
+                                `user`.`DATAADAUGARII`,
+                                `user`.`STATUS`
+                            FROM `ulbsplatform`.`user`
+                             WHERE STATUS=:status;;');
+        $stmt->bindParam(':status', $status, PDO::PARAM_STR);
+
 
 
         return $stmt->execute() ? $stmt->fetchAll() : FALSE;
@@ -124,7 +156,7 @@ class User {
                                 `user`.`STATUS`
                             FROM `ulbsplatform`.`user`
                             WHERE tip=:type;');
-        $stmt->bindValue(':type', $type, PDO::PARAM_STR);
+        $stmt->bindParam(':type', $type, PDO::PARAM_STR);
 
         return $stmt->execute() ? $stmt->fetchAll() : FALSE;
     }
@@ -145,8 +177,8 @@ class User {
                                 SET
                                 `TIP` =:type
                                 WHERE `ID` =:id;');
-        $stmt->bindValue(':type', $type, PDO::PARAM_STR);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':type', $type, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
         return $stmt->execute() ? true : false;
     }
@@ -167,8 +199,8 @@ class User {
                                 SET
                                 `EMAIL` =:email
                                 WHERE `ID` =:id;');
-        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
         return $stmt->execute() ? true : false;
     }
@@ -193,10 +225,10 @@ class User {
                                 `PRENUME` =:prenume,
                                 `STATUS` =:status
                                 WHERE `ID` =:id;');
-        $stmt->bindValue(':nume', $nume, PDO::PARAM_STR);
-        $stmt->bindValue(':prenume', $prenume, PDO::PARAM_STR);
-        $stmt->bindValue(':status', $status, PDO::PARAM_STR);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':nume', $nume, PDO::PARAM_STR);
+        $stmt->bindParam(':prenume', $prenume, PDO::PARAM_STR);
+        $stmt->bindParam(':status', $status, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
         return $stmt->execute() ? true : false;
     }
@@ -233,13 +265,13 @@ class User {
                                 :tip,
                                 :data,
                                 :status);');
-        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-        $stmt->bindValue(':parola', $parola, PDO::PARAM_STR);
-        $stmt->bindValue(':nume', $nume, PDO::PARAM_STR);
-        $stmt->bindValue(':prenume', $prenume, PDO::PARAM_STR);
-        $stmt->bindValue(':status', $status, PDO::PARAM_STR);
-        $stmt->bindValue(':tip', $tip, PDO::PARAM_STR);
-        $stmt->bindValue(':data', $data, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':parola', $parola, PDO::PARAM_STR);
+        $stmt->bindParam(':nume', $nume, PDO::PARAM_STR);
+        $stmt->bindParam(':prenume', $prenume, PDO::PARAM_STR);
+        $stmt->bindParam(':status', $status, PDO::PARAM_STR);
+        $stmt->bindParam(':tip', $tip, PDO::PARAM_STR);
+        $stmt->bindParam(':data', $data, PDO::PARAM_STR);
 
         return $stmt->execute() ? true : false;
     }
@@ -250,7 +282,7 @@ class User {
      * @param String $email
      * @return bool
      */
-    public function isAvaibleEmail($email) {
+    public function isEmailAvaible($email) {
 
         getdbh();
         $db = $GLOBALS['dbh'];
@@ -259,7 +291,7 @@ class User {
                                 `user`.`EMAIL`
                             FROM `ulbsplatform`.`user`
                             WHERE `user`.`EMAIL`=:email;');
-        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
 
         $stmt->execute();
         if ($stmt->fetch()) {
