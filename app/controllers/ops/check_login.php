@@ -5,9 +5,12 @@ function _check_login() {
 	//$user->checkPassword();
 	//redirect fie catre main page fie inapoi catre login
 	//$_POST contine datele din form trimise de user
-require_login();    
+  
   $user=new User(getdbh());
-  if($user->checkPassword($_POST['user'],$_POST['pass']) ){
+  $user_details = $user->checkPassword('test', 'test');
+  if(count($user_details) == 1){
+		//TODO adauga in sesiune user id, si user type ($user_details['ID'])
+		$_SESSION['uid'] = $user_details[0]['ID'];
         redirect('main/index');
     }
       else{
