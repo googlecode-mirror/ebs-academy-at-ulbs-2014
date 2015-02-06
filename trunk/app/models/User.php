@@ -2,6 +2,8 @@
 
 class User {
 
+	private $db;
+	
     function __construct($db) {
 
         $this->db = $db;
@@ -9,25 +11,30 @@ class User {
 
     /**
      * 
-     * Return true is password is corect <br>
+     * Return true if password is corect <br>
 
-     * @param int $email <br>
-     * @param int $password <br>
-     * @return bool
+     * @param string $email <br>
+     * @param string $password <br>
+     * @return array or bool
      */
-    public function checkPasswd($email, $pass) {
+    public function checkPassword($email, $pass) {
+	$result = array();
         $db = $GLOBALS['dbh'];
         $stmt = $db->prepare('SELECT
-                                    `user`.`EMAIL`,
-                                    `user`.`PAROLA`
-                                FROM `ulbsplatform`.`user`
-                                WHERE EMAIL=:email AND PAROLA=:pass;');
+                                    `User`.`ID`,
+                                    `User`.`TIP`
+                                FROM `ULBSPlatform`.`User`
+                                WHERE EMAIL=:email 
+								AND PAROLA=:pass
+								AND status = \'AC\';');
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':pass', $pass, PDO::PARAM_STR);
-        $stmt->execute();
 
-        if ($stmt->fetch()) {
-            return true;
+        if ($stmt->execute()) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$result[] = $row;
+			}
+			return $result;
         } else {
             return false;
         }
@@ -49,6 +56,7 @@ class User {
     public function getUserDetails($user_id) {
         getdbh();
         $db = $GLOBALS['dbh'];
+		$result = array();
 
         $stmt = $db->prepare('SELECT
                                 `user`.`EMAIL`,
@@ -63,8 +71,15 @@ class User {
         $stmt->execute(array('id' => $user_id));
 
         while ($row = $stmt->fetch()) {
-            return $row;
+            $result[] = $row;
         }
+		if (count($result) == 1) {
+			return $result;
+		} else {
+			//logare fisier eroare, prea multe rezultate pt un id
+			return false;
+		}
+		
     }
 
     /**
@@ -122,7 +137,7 @@ class User {
                                 `user`.`DATAADAUGARII`,
                                 `user`.`STATUS`
                             FROM `ulbsplatform`.`user`
-                             WHERE STATUS=:status;;');
+                             WHERE STATUS=:status;');
         $stmt->bindParam(':status', $status, PDO::PARAM_STR);
 
 
@@ -164,7 +179,7 @@ class User {
     /**
      * 
      * Set user type <br>
-     * @param String $id
+     * @param int $id
      * @param String $type 
      * @return bool
      */
@@ -234,9 +249,8 @@ class User {
     }
 
     /**
-     * 
-     * Set user email <br>
-     * @param int $id
+     * //TODO clean up
+     * Add new user <br>
      * @param String $nume
      * @param String $prenume
      * @param String $status
@@ -247,6 +261,9 @@ class User {
         getdbh();
         $db = $GLOBALS['dbh'];
         $data = date("Y-m-d");
+		//TODO scos status, pus new
+		//TODO functia trebuie sa returneze noul id creat
+		// poti folosi last_insert_id()
         $stmt = $db->prepare('INSERT INTO `ulbsplatform`.`user`
                                 (
                                 `EMAIL`,
@@ -273,7 +290,9 @@ class User {
         $stmt->bindParam(':tip', $tip, PDO::PARAM_STR);
         $stmt->bindParam(':data', $data, PDO::PARAM_STR);
 
-        return $stmt->execute() ? true : false;
+        $stmt->execute();
+		$user_id = $stmt->last_insert_id();
+		return $user_id;
     }
 
     /**

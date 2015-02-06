@@ -16,7 +16,7 @@
 			</div>
 
 			<div id="main">
-				<?php include "login.tpl.php"?>
+				<?php echo (isset($msg) && is_array($msg)) ? implode("\n",$msg) : ''?>
 			</div>
 			
 			<div id="footer">
