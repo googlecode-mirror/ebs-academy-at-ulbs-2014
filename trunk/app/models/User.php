@@ -2,8 +2,8 @@
 
 class User {
 
-	private $db;
-	
+    private $db;
+
     function __construct($db) {
 
         $this->db = $db;
@@ -11,30 +11,30 @@ class User {
 
     /**
      * 
-     * Return true if password is corect <br>
+     * Return ID and TIP if password is corect <br>
 
      * @param string $email <br>
      * @param string $password <br>
      * @return array or bool
      */
     public function checkPassword($email, $pass) {
-	$result = array();
-        $db = $GLOBALS['dbh'];
-        $stmt = $db->prepare('SELECT
+        $result = array();
+
+        $stmt = $this->db->prepare('SELECT
                                     `User`.`ID`,
                                     `User`.`TIP`
                                 FROM `ULBSPlatform`.`User`
                                 WHERE EMAIL=:email 
-								AND PAROLA=:pass
-								AND status = \'AC\';');
+				AND PAROLA=:pass
+				AND status = \'AC\';');
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':pass', $pass, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-				$result[] = $row;
-			}
-			return $result;
+                $result[] = $row;
+            }
+            return $result;
         } else {
             return false;
         }
@@ -54,32 +54,31 @@ class User {
      * @return array
      */
     public function getUserDetails($user_id) {
-        getdbh();
-        $db = $GLOBALS['dbh'];
-		$result = array();
 
-        $stmt = $db->prepare('SELECT
-                                `user`.`EMAIL`,
-                                `user`.`NUME`,
-                                `user`.`PRENUME`,
-                                `user`.`TIP`,
-                                `user`.`DATAADAUGARII`,
-                                `user`.`STATUS`
-                            FROM `ulbsplatform`.`user`
-                            WHERE ID=:id;');
+        $result = array();
+
+        $stmt = $this->db->prepare('SELECT 
+                    `User`.`EMAIL`,
+                    `User`.`NUME`,
+                    `User`.`PRENUME`,
+                    `User`.`TIP`,
+                    `User`.`DATAADAUGARII`,
+                    `User`.`STATUS`
+                FROM `ULBSPlatform`.`User`
+                WHERE ID=:id;');
         $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
-        $stmt->execute(array('id' => $user_id));
+        $stmt->execute();
 
-        while ($row = $stmt->fetch()) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $result[] = $row;
         }
-		if (count($result) == 1) {
-			return $result;
-		} else {
-			//logare fisier eroare, prea multe rezultate pt un id
-			return false;
-		}
-		
+        if (count($result) == 1) {
+            return $result;
+        } else {
+            //logare fisier eroare, prea multe rezultate pt un id
+            redirect('error/404');
+            return false;
+        }
     }
 
     /**
@@ -95,22 +94,17 @@ class User {
      * @return array
      */
     public function fetchAll() {
-        getdbh();
-        $db = $GLOBALS['dbh'];
 
-        $stmt = $db->prepare('SELECT
-                                `user`.`EMAIL`,
-                                `user`.`NUME`,
-                                `user`.`PRENUME`,
-                                `user`.`TIP`,
-                                `user`.`DATAADAUGARII`,
-                                `user`.`STATUS`
-                            FROM `ulbsplatform`.`user`;');
+        $stmt = $this->db->prepare('SELECT 
+                                        `User`.`EMAIL`,
+                                        `User`.`NUME`,
+                                        `User`.`PRENUME`,
+                                        `User`.`TIP`,
+                                        `User`.`DATAADAUGARII`,
+                                        `User`.`STATUS`
+                                    FROM `ULBSPlatform`.`User`');
 
-        //$stmt->execute();
-
-
-        return $stmt->execute() ? $stmt->fetchAll() : FALSE;
+        return $stmt->execute() ? $stmt->fetchAll(PDO::FETCH_ASSOC) : FALSE;
     }
 
     /**
@@ -123,26 +117,23 @@ class User {
      * TIP <br>
      * DATAADAUGARII <br>
      * STATUS 
+     * @param String $status <br>
      * @return array
      */
     public function fetchByStatus($status) {
-        getdbh();
-        $db = $GLOBALS['dbh'];
 
-        $stmt = $db->prepare('SELECT
-                                `user`.`EMAIL`,
-                                `user`.`NUME`,
-                                `user`.`PRENUME`,
-                                `user`.`TIP`,
-                                `user`.`DATAADAUGARII`,
-                                `user`.`STATUS`
-                            FROM `ulbsplatform`.`user`
-                             WHERE STATUS=:status;');
+        $stmt = $this->db->prepare('SELECT 
+                                                `User`.`EMAIL`,
+                                                `User`.`NUME`,
+                                                `User`.`PRENUME`,
+                                                `User`.`TIP`,
+                                                `User`.`DATAADAUGARII`,
+                                                `User`.`STATUS`
+                                            FROM `ULBSPlatform`.`User`
+                                            WHERE STATUS=:status;');
         $stmt->bindParam(':status', $status, PDO::PARAM_STR);
 
-
-
-        return $stmt->execute() ? $stmt->fetchAll() : FALSE;
+        return $stmt->execute() ? $stmt->fetchAll(PDO::FETCH_ASSOC) : FALSE;
     }
 
     /**
@@ -159,21 +150,19 @@ class User {
      * @return array
      */
     public function fetchByType($type) {
-        getdbh();
-        $db = $GLOBALS['dbh'];
 
-        $stmt = $db->prepare('SELECT
-                                `user`.`EMAIL`,
-                                `user`.`NUME`,
-                                `user`.`PRENUME`,
-                                `user`.`TIP`,
-                                `user`.`DATAADAUGARII`,
-                                `user`.`STATUS`
-                            FROM `ulbsplatform`.`user`
-                            WHERE tip=:type;');
+        $stmt = $this->db->prepare('SELECT 
+                                        `User`.`EMAIL`,
+                                        `User`.`NUME`,
+                                        `User`.`PRENUME`,
+                                        `User`.`TIP`,
+                                        `User`.`DATAADAUGARII`,
+                                        `User`.`STATUS`
+                                    FROM `ULBSPlatform`.`User`
+                                    WHERE TIP=:type;');
         $stmt->bindParam(':type', $type, PDO::PARAM_STR);
 
-        return $stmt->execute() ? $stmt->fetchAll() : FALSE;
+        return $stmt->execute() ? $stmt->fetchAll(PDO::FETCH_ASSOC) : FALSE;
     }
 
     /**
@@ -185,10 +174,7 @@ class User {
      */
     public function setType($id, $type) {
 
-        getdbh();
-        $db = $GLOBALS['dbh'];
-
-        $stmt = $db->prepare('UPDATE `ulbsplatform`.`user`
+        $stmt = $this->db->prepare('UPDATE `ULBSPlatform`.`User`
                                 SET
                                 `TIP` =:type
                                 WHERE `ID` =:id;');
@@ -206,11 +192,8 @@ class User {
      * @return bool
      */
     public function setEmail($id, $email) {
-
-        getdbh();
-        $db = $GLOBALS['dbh'];
-
-        $stmt = $db->prepare('UPDATE `ulbsplatform`.`user`
+        
+        $stmt = $this->db->prepare('UPDATE `ULBSPlatform`.`User`
                                 SET
                                 `EMAIL` =:email
                                 WHERE `ID` =:id;');
@@ -230,11 +213,8 @@ class User {
      * @return bool
      */
     public function updateUser($id, $nume, $prenume, $status) {
-
-        getdbh();
-        $db = $GLOBALS['dbh'];
-
-        $stmt = $db->prepare('UPDATE `ulbsplatform`.`user`
+        
+        $stmt = $this->db->prepare('UPDATE `ULBSPlatform`.`User`
                                 SET
                                 `NUME` =:nume,
                                 `PRENUME` =:prenume,
@@ -249,50 +229,43 @@ class User {
     }
 
     /**
-     * //TODO clean up
+     *
      * Add new user <br>
+     * @param String $email
+     * @param String $password
      * @param String $nume
      * @param String $prenume
-     * @param String $status
-     * @return bool
+     * @param String $tip
+     * @return user_id or false
      */
-    public function addUser($email, $parola, $nume, $prenume, $tip, $status) {
+    public function addUser($email, $parola, $nume, $prenume, $tip) {
 
-        getdbh();
-        $db = $GLOBALS['dbh'];
-        $data = date("Y-m-d");
-		//TODO scos status, pus new
-		//TODO functia trebuie sa returneze noul id creat
-		// poti folosi last_insert_id()
-        $stmt = $db->prepare('INSERT INTO `ulbsplatform`.`user`
-                                (
-                                `EMAIL`,
-                                `PAROLA`,
-                                `NUME`,
-                                `PRENUME`,
-                                `TIP`,
-                                `DATAADAUGARII`,
-                                `STATUS`)
-                                VALUES
-                                (
-                                :email,
-                                :parola,
-                                :nume,
-                                :prenume,
-                                :tip,
-                                :data,
-                                :status);');
+        $stmt = $this->db->prepare('INSERT INTO `ULBSPlatform`.`User`
+                                        (
+                                        `EMAIL`,
+                                        `PAROLA`,
+                                        `NUME`,
+                                        `PRENUME`,
+                                        `TIP`,
+                                        `DATAADAUGARII`,
+                                        `STATUS`)
+                                        VALUES
+                                        (
+                                        :email,
+                                        :parola,
+                                        :nume,
+                                        :prenume,
+                                        :tip,
+                                        now(),
+                                        \'new\');');
+
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':parola', $parola, PDO::PARAM_STR);
         $stmt->bindParam(':nume', $nume, PDO::PARAM_STR);
         $stmt->bindParam(':prenume', $prenume, PDO::PARAM_STR);
-        $stmt->bindParam(':status', $status, PDO::PARAM_STR);
         $stmt->bindParam(':tip', $tip, PDO::PARAM_STR);
-        $stmt->bindParam(':data', $data, PDO::PARAM_STR);
-
         $stmt->execute();
-		$user_id = $stmt->last_insert_id();
-		return $user_id;
+        return $stmt->execute() ? $user_id = $this->db->lastInsertId() : false;
     }
 
     /**
@@ -303,17 +276,16 @@ class User {
      */
     public function isEmailAvaible($email) {
 
-        getdbh();
-        $db = $GLOBALS['dbh'];
 
-        $stmt = $db->prepare('SELECT
-                                `user`.`EMAIL`
-                            FROM `ulbsplatform`.`user`
-                            WHERE `user`.`EMAIL`=:email;');
+
+        $stmt = $this->db->prepare('SELECT
+                                        `User`.`EMAIL`
+                                    FROM `ULBSPlatform`.`User`
+                                    WHERE `User`.`EMAIL`=:email;');
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
 
         $stmt->execute();
-        if ($stmt->fetch()) {
+        if ($stmt->fetch(PDO::FETCH_ASSOC)) {
             return 'false';
         } else {
             return 'true';
