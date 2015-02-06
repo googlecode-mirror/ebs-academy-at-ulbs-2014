@@ -187,8 +187,8 @@ font-size:1.1em;
 
  #header{
  margin:auto;
- width:700px;
- border:1px solid black;
+ width:1000px;
+ border-bottom:1px solid black;
  background-color: #0066CC;
  height: 50px;
  text-align: right;
@@ -196,11 +196,12 @@ font-size:1.1em;
 
 #footer{
  margin:auto;
- width:700px;
- border:1px solid black;
+ width:1000px;
+ border-top:1px solid black;
  background-color: #0066CC;
  height: 80px;
  text-align: center;
+ clear:both;
 }
 
 li{
@@ -258,4 +259,24 @@ text-align:center;
 	*{
 	color:green;
 	}
+}
+
+#frame{
+width:1000px;
+margin:auto;
+border:1px solid black;
+}
+
+#meniu_div{
+ height:auto;
+ float:left;
+ margin:auto;
+ width:200px;
+ text-align: center;
+ }
+
+#main{
+float:left;
+border-left:1px solid black;
+width:798px;
 }
