@@ -6,8 +6,8 @@ function _check_login() {
 	//redirect fie catre main page fie inapoi catre login
 	//$_POST contine datele din form trimise de user
 require_login();    
-  $user=new User();
-  if($user->checkPassword($_POST['úser'],$_POST['pass']) ){
+  $user=new User(getdbh());
+  if($user->checkPassword($_POST['user'],$_POST['pass']) ){
         redirect('main/index');
     }
       else{
