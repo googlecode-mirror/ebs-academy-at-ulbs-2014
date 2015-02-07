@@ -3,13 +3,14 @@
 	<head>
 		<title><?php echo $GLOBALS['sitename'];?></title>
 		<link rel="stylesheet" type="text/css" <?php echo 'href="'.WEB_DOMAIN.'/css/style.css"';?> />
+                <script <?php echo 'src="'.WEB_DOMAIN.'/js/script.js"';?>></script> 
 	</head>
 
 	<body>
 		<div id="frame">
-			<div id="header">
+			
 				<?php include "header.tpl.php"?>
-			</div>
+			
 			
 			<div id="meniu_div">
 				<?php include "meniu.php"?>
@@ -19,9 +20,9 @@
 				<?php echo (isset($msg) && is_array($msg)) ? implode("\n",$msg) : ''?>
 			</div>
 			
-			<div id="footer">
+			
 				<?php include "footer.tpl.php"?>
-			</div>
+			
 		</div>
     </body>
 </html>

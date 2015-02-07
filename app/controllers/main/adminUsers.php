@@ -1,6 +1,10 @@
 <?php
 function _adminUsers() {
 //$_POST['checkbox']  = "id_1"- inseamna ca in interfata s-a selectat checkbox pt user_id 1
+    print_r($_POST);
+    foreach ($_POST as $id => $value){
+        echo $id.' '.$value.' ';
+    }
 	switch ($_POST['actiune']) {
 		case 'edit':
 			//TODO add edit actions
