@@ -1,5 +1,4 @@
 
-
         <form action="<?php echo myUrl('ops/check_login'); ?>" method="POST">
             <div class="login_div">
                 <div class="login_text"> Va rugam introduceti datele de logare: </div>
