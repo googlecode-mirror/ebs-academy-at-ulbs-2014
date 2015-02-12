@@ -1,6 +1,6 @@
 
-<form method="post" action="#">
+<form method="post" action="<?php echo myUrl('ops/recover_password'); ?>">
     Email:
-    <input type="text" name="nume" />
+    <input type="email" name="email" />
     <input type="submit" value="Schimba" />
 </form>
