@@ -22,7 +22,7 @@
                 </div>
                 <div style="clear:both;">
 
-                    <div class="recover"><a href="#"> Recover password</a></div>
+                    <div class="recover"><a href="<?php echo myUrl('main/recover'); ?>"> Recover password</a></div>
 
                 </div>
             </div>

@@ -5,7 +5,7 @@ function _check_login() {
 	//$user->checkPassword();
 	//redirect fie catre main page fie inapoi catre login
 	//$_POST contine datele din form trimise de user
-  
+     
   $user=new User(getdbh());
   $user_details = $user->checkPassword('test', 'test');
   if(count($user_details) == 1){

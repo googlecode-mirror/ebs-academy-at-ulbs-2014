@@ -26,7 +26,8 @@ class User {
                                 FROM `ULBSPlatform`.`User`
                                 WHERE EMAIL=:email 
 				AND PAROLA=:pass
-				AND status = \'AC\';');
+				AND status = \'AC\'
+                                AND status = \'NEW_PASS\';');
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':pass', $pass, PDO::PARAM_STR);
 
@@ -192,7 +193,7 @@ class User {
      * @return bool
      */
     public function setEmail($id, $email) {
-        
+
         $stmt = $this->db->prepare('UPDATE `ULBSPlatform`.`User`
                                 SET
                                 `EMAIL` =:email
@@ -213,7 +214,7 @@ class User {
      * @return bool
      */
     public function updateUser($id, $nume, $prenume, $status) {
-        
+
         $stmt = $this->db->prepare('UPDATE `ULBSPlatform`.`User`
                                 SET
                                 `NUME` =:nume,
@@ -272,24 +273,133 @@ class User {
      * 
      * Check user email <br>
      * @param String $email
-     * @return bool
+     * @return bool or userID
      */
-    public function isEmailAvaible($email) {
+    public function checkEmail($email) {
 
 
 
         $stmt = $this->db->prepare('SELECT
-                                        `User`.`EMAIL`
+                                        `User`.`ID`
                                     FROM `ULBSPlatform`.`User`
                                     WHERE `User`.`EMAIL`=:email;');
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
 
         $stmt->execute();
-        if ($stmt->fetch(PDO::FETCH_ASSOC)) {
-            return 'false';
+        if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            return $row;
         } else {
-            return 'true';
+            return 'false';
         }
+    }
+
+    /**
+     * 
+     * Set token for new pass and send email <br>
+     * @param int $id
+     * @param String $email
+     * @return bool 
+     */
+    public function setRecover($id, $email) {
+
+        $key = uniqid($id, true);
+
+
+        $stmt = $this->db->prepare('UPDATE `ULBSPlatform`.`User`
+                                    SET
+                                    `STATUS` =\'NEW_PASS\',
+                                    `FORGOT_PASS_TOKEN` =:key,
+                                    `FORGOT_PASS_EXPIRATION_DATE` =now()+INTERVAL 2 DAY
+                                    WHERE `ID` =:id;');
+
+        $stmt->bindParam(':key', $key);
+        $stmt->bindParam(':id', $id);
+
+        require_once APP_PATH . '/PHPMailer-master/class.phpmailer.php';
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = 1;
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = 'ssl';
+        $mail->Host = 'tls://smtp.gmail.com';
+        $mail->Port = '465';
+        $mail->isMail(true);
+        $mail->Username = 'icontiu@gmail.com';
+        $mail->Password = 'pass';
+        $mail->setFrom($email);
+        $mail->Subject = 'Recuperare parola';
+        $mail->Body = 'Pentru a schimba parola acceseaza acest link  href="' . WEB_DOMAIN . '/' . APP_PATH . 'controllers/ops/recover_password.php?token=' . $key . '"';
+        $mail->addAddress($email);
+
+        if (!$mail->send()) {
+
+            echo 'nu a fost trimis';
+        } else {
+
+            echo 'a fost trimis';
+        }
+
+
+
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 
+     * Check if token is corect and not expired <br>
+     * @param String $token
+     * @return array or bool
+     */
+    public function checkToken($token) {
+        $result = array();
+
+        $stmt = $this->db->prepare('SELECT 
+                                        `User`.`ID`,
+                                        `User`.`EMAIL`
+                                    FROM 
+                                        `ULBSPlatform`.`User`
+                                    WHERE 
+                                        FORGOT_PASS_TOKEN=:token
+                                    AND now()<(select FORGOT_PASS_EXPIRATION_DATE from `ULBSPlatform`.`User` where FORGOT_PASS_TOKEN=:token )
+                                    AND `User`.`STATUS`=\'NEW_PASS\';
+                                    ');
+        $stmt->bindParam(':token', $token, PDO::PARAM_STR);
+
+
+
+        $stmt->execute();
+        if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            return $row;
+        } else {
+            return 'false';
+        }
+    }
+
+    /**
+     * 
+     * Set new passwotd <br>
+     * @param String $password
+     * @return bool
+     */
+    public function newPassword($password) {
+
+
+        $stmt = $this->db->prepare('UPDATE `ULBSPlatform`.`User`
+                                            SET
+                                            `PAROLA` =:pass,
+                                            `STATUS` =\'AC\'
+                                            WHERE `ID` =:id
+                                            AND `EMAIL`= :email ;');
+        $stmt->bindParam(':pass', $password, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $_SESSION['NEW_ID']);
+        $stmt->bindParam(':id', $_SESSION['NEW_EMAIL']);
+
+
+        return $stmt->execute() ? true : false;
     }
 
 }
