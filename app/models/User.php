@@ -402,4 +402,20 @@ class User {
         return $stmt->execute() ? true : false;
     }
 
-}
+    /**
+     * 
+     * Delete User <br>
+     * @param int $id
+     * @return bool
+     */
+    public function deleteUser($id) {
+
+        $stmt = $this->db->prepare('DELETE `ULBSPlatform`.`User`
+                                    WHERE `ID` =:id;');
+           $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        return $stmt->execute() ? true : false;
+ }
+ 
+ 
+    }
