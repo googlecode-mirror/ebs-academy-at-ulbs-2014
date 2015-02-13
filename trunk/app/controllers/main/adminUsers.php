@@ -12,7 +12,13 @@ function _adminUsers() {
 			//$user_id = explode($_POST['checkbox'], "_")[1];
 			//$user = new User();
 			//$user->editUser($user_id, ...)
+                    $user_id = explode($_POST['checkbox'], "_")[1];
+                    $user = new User();
+                    $user->updateUser($id, $nume, $prenume, $status);
 		case 'delete':
 			//TODO add delete actions
+                    $user_id = explode($_POST['checkbox'], "_")[1];
+                    $user = new User();
+                    $user->deleteUser($id);
 	}
 }
