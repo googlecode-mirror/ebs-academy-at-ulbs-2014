@@ -1,6 +1,6 @@
 <?php
 
-class User {
+class Grupa {
 
     private $db;
 
@@ -118,7 +118,7 @@ class User {
 	
 	/**
      *
-     * Add new user <br>
+     * Add new grupa <br>
      * @param String $nume
      * @param int $an
      * @param String $sef_grupa
