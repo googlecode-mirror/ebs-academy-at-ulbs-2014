@@ -3,10 +3,11 @@
     <table>
         <tr>
             <td>Email</td>
-            <td> <input type="text" name="username" /></td>
+            <td> <input type="text" name="username" 
+			value="<?php echo isset($user[0]['EMAIL']) ? $user[0]['EMAIL'] : '';?>" /></td>
         </tr>
         <tr>
-            <td>Name</td>
+            <td>Nume</td>
             <td><input type="text" name="nume" /></td>
         </tr>
         <tr>
