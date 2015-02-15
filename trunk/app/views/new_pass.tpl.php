@@ -1,4 +1,4 @@
-<form action="#" method="POST" onsubmit="return checkPassSubmit();">
+<form action="<?php echo myUrl('ops/recover_password') ?>" method="POST" onsubmit="return checkPassSubmit();">
     <div class="login_div">
         <div class="login_text"> Va rugam introduceti noua parola </div>
         <br />

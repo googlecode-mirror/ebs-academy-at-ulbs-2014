@@ -1,6 +1,6 @@
 <?php
 
-function _recover_password() {
+function _recover_password($token = '') {
 //cererea pentru schimbarea parolei
     if (isset($_POST['email'])) {
         $user = new User(getdbh());

@@ -309,8 +309,8 @@ class User {
                                     SET
                                     `STATUS` =\'NEW_PASS\',
                                     `FORGOT_PASS_TOKEN` =:key,
-                                    `FORGOT_PASS_EXPIRATION_DATE` =now()+INTERVAL 2 DAY
-                                    WHERE `ID` =:id;');
+                                    `FORGOT_PASS_EXPIRATION_DATE` =now()+INTERVAL 2 DAY,
+                                    WHERE `ID` =:id');
 
         $stmt->bindParam(':key', $key);
         $stmt->bindParam(':id', $id);
