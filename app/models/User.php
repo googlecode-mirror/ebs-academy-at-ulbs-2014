@@ -26,7 +26,7 @@ class User {
                                 FROM `ULBSPlatform`.`User`
                                 WHERE EMAIL=:email 
 				AND PAROLA=:pass
-				AND status = \'AC\'
+				AND status = \'ACTIV\'
                                 AND status = \'NEW_PASS\';');
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':pass', $pass, PDO::PARAM_STR);
@@ -298,51 +298,26 @@ class User {
      * Set token for new pass and send email <br>
      * @param int $id
      * @param String $email
-     * @return bool 
+     * @return $token or false
      */
     public function setRecover($id, $email) {
 
-        $key = uniqid($id, true);
-
+        $key1 = uniqid($id,true);
+        $key= str_replace(".","",$key1);
 
         $stmt = $this->db->prepare('UPDATE `ULBSPlatform`.`User`
                                     SET
                                     `STATUS` =\'NEW_PASS\',
+                                    `PAROLA` =\'\',
                                     `FORGOT_PASS_TOKEN` =:key,
-                                    `FORGOT_PASS_EXPIRATION_DATE` =now()+INTERVAL 2 DAY,
+                                    `FORGOT_PASS_EXPIRATION_DATE` =now()+INTERVAL 2 DAY
                                     WHERE `ID` =:id');
 
         $stmt->bindParam(':key', $key);
         $stmt->bindParam(':id', $id);
 
-        require_once APP_PATH . '/PHPMailer-master/class.phpmailer.php';
-        $mail = new PHPMailer();
-        $mail->isSMTP();
-        $mail->SMTPDebug = 1;
-        $mail->SMTPAuth = true;
-        $mail->SMTPSecure = 'ssl';
-        $mail->Host = 'tls://smtp.gmail.com';
-        $mail->Port = '465';
-        $mail->isMail(true);
-        $mail->Username = 'icontiu@gmail.com';
-        $mail->Password = 'pass';
-        $mail->setFrom($email);
-        $mail->Subject = 'Recuperare parola';
-        $mail->Body = 'Pentru a schimba parola acceseaza acest link  href="' . WEB_DOMAIN . '/' . APP_PATH . 'controllers/ops/recover_password.php?token=' . $key . '"';
-        $mail->addAddress($email);
-
-        if (!$mail->send()) {
-
-            echo 'nu a fost trimis';
-        } else {
-
-            echo 'a fost trimis';
-        }
-
-
-
         if ($stmt->execute()) {
-            return true;
+            return $key;
         } else {
             return false;
         }
@@ -385,18 +360,18 @@ class User {
      * @param String $password
      * @return bool
      */
-    public function newPassword($password) {
+    public function newPassword($password, $id) {
 
 
         $stmt = $this->db->prepare('UPDATE `ULBSPlatform`.`User`
                                             SET
                                             `PAROLA` =:pass,
-                                            `STATUS` =\'AC\'
-                                            WHERE `ID` =:id
-                                            AND `EMAIL`= :email ;');
+                                            `STATUS` =\'ACTIV\',
+                                            `FORGOT_PASS_TOKEN` =\'\'
+                                            WHERE `ID` =:id;');
         $stmt->bindParam(':pass', $password, PDO::PARAM_STR);
-        $stmt->bindParam(':id', $_SESSION['NEW_ID']);
-        $stmt->bindParam(':id', $_SESSION['NEW_EMAIL']);
+        $stmt->bindParam(':id', $id);
+       
 
 
         return $stmt->execute() ? true : false;
