@@ -26,15 +26,18 @@ class User {
                                 FROM `ULBSPlatform`.`User`
                                 WHERE EMAIL=:email 
 				AND PAROLA=:pass
-				AND status = \'ACTIV\'
-                                AND status = \'NEW_PASS\';');
+				AND status = \'ACTIV\';');
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':pass', $pass, PDO::PARAM_STR);
-
+        
+        
+        
         if ($stmt->execute()) {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $result[] = $row;
+                
             }
+           
             return $result;
         } else {
             return false;
