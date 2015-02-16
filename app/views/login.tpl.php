@@ -21,8 +21,9 @@
 
                 </div>
                 <div style="clear:both;">
-
-                    <div class="recover"><a href="<?php echo myUrl('main/recover'); ?>"> Recover password</a></div>
+                    <div class="col_login1"><a href="<?php echo myUrl('main/new'); ?>"> New Account</a></div>
+                    <div class="col_login2"><a href="<?php echo myUrl('main/recover'); ?>"> Recover Password</a></div>
+                    
 
                 </div>
             </div>
