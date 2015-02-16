@@ -17,7 +17,7 @@ $stud[1]['data'] = "23-11-1993";
 
 <div id="afisare_user">
     <table id="tabel">
-        <form method="post" action="<?php echo myUrl('main/adminUsers') ?>"> 
+        <form method="post" action="<?php echo myUrl('main/adminUsers') ?>" > 
             <a href=<?php echo myUrl('main/addUser'); ?>>Adauga </a>
           
 
@@ -37,7 +37,7 @@ $stud[1]['data'] = "23-11-1993";
             for ($key_Number = 0; $key_Number < $lengthOfArray; $key_Number++) {
                 echo "<tr>"
                 . " <td>"
-                . "<input type=\"checkbox\" name=\"" . $stud[$key_Number]['id'] . "\" value=\"id_" . $stud[$key_Number]['id'] . "\" /></td>"
+                . "<input type=\"checkbox\" name=\"checkbox_" . $stud[$key_Number]['id'] . "\" value=\"id_" . $stud[$key_Number]['id'] . "\" /></td>"
                 . "<td>" . $stud[$key_Number]['mail'] . "</td>
 		<td>" . $stud[$key_Number]['nume'] . "</td>
 		<td>" . $stud[$key_Number]['prenume'] . "</td>
@@ -57,7 +57,7 @@ $stud[1]['data'] = "23-11-1993";
                 <td></td> 
                 <td></td>
                 <td></td> 
-                <td></td> 
+                <td><input type="submit" value="Sterge tot" onclick="myFunction('delete_all')"></td> 
             </tr>
         </form>
     </table>
