@@ -1,20 +1,4 @@
 
-
-<?php
-$stud[0]['id'] = "1";
-$stud[0]['mail'] = "pop@email";
-$stud[0]['nume'] = "Popescu";
-$stud[0]['prenume'] = "Vlad";
-$stud[0]['tip_user'] = "Stud";
-$stud[0]['data'] = "04-08-1993";
-$stud[1]['id'] = "2";
-$stud[1]['mail'] = "Ion@email";
-$stud[1]['nume'] = "Ionescu";
-$stud[1]['prenume'] = "Marius";
-$stud[1]['tip_user'] = "Stud";
-$stud[1]['data'] = "23-11-1993";
-?>
-
 <div id="afisare_user">
     <table id="tabel">
         <form method="post" action="<?php echo myUrl('main/adminUsers') ?>" > 
@@ -27,22 +11,24 @@ $stud[1]['data'] = "23-11-1993";
                 <th>Nume</th>
                 <th>Prenume</th>
                 <th>Tip</th>
+                <th>Status</th>
                 <th>Data</th>
                 <th>Modifica</th>
                 <th>Sterge</th>   
             </tr>
 
             <?php
-            $lengthOfArray = count($stud);
+            $lengthOfArray = count($user);
             for ($key_Number = 0; $key_Number < $lengthOfArray; $key_Number++) {
                 echo "<tr>"
                 . " <td>"
-                . "<input type=\"checkbox\" name=\"checkbox_" . $stud[$key_Number]['id'] . "\" value=\"id_" . $stud[$key_Number]['id'] . "\" /></td>"
-                . "<td>" . $stud[$key_Number]['mail'] . "</td>
-		<td>" . $stud[$key_Number]['nume'] . "</td>
-		<td>" . $stud[$key_Number]['prenume'] . "</td>
-		<td>" . $stud[$key_Number]['tip_user'] . "</td>
-		<td>" . $stud[$key_Number]['data'] . "</td>
+                . "<input type=\"checkbox\" name=\"checkbox_" . $user[$key_Number]['ID'] . "\" value=\"id_" . $user[$key_Number]['ID'] . "\" /></td>"
+                . "<td>" . $user[$key_Number]['EMAIL'] . "</td>
+		<td>" . $user[$key_Number]['NUME'] . "</td>
+		<td>" . $user[$key_Number]['PRENUME'] . "</td>
+		<td>" . $user[$key_Number]['TIP'] . "</td>
+                <td>" . $user[$key_Number]['STATUS'] . "</td>
+		<td>" . $user[$key_Number]['DATAADAUGARII'] . "</td>
 		<td><input type=\"submit\" value=\"Modifica\" onclick=\"myFunction('edit')\"></td>
 		<td><input type=\"submit\" value=\"Sterge\" onclick=\"myFunction('delete')\"></td></tr>";
             }
