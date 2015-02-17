@@ -100,6 +100,7 @@ class User {
     public function fetchAll() {
 
         $stmt = $this->db->prepare('SELECT 
+                                        `User`.`ID`,
                                         `User`.`EMAIL`,
                                         `User`.`NUME`,
                                         `User`.`PRENUME`,
