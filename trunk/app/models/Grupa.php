@@ -26,10 +26,7 @@ class Grupa {
         $result = array();
 
         $stmt = $this->db->prepare('SELECT 
-                    `Grupa`.`NUME`,
-                    `Grupa`.`AN`,
-                    `Grupa`.`SEF_GRUPA`,
-                    `Grupa`.`PROFIL`,
+                  *
                 FROM `ULBSPlatform`.`Grupa`
                 WHERE ID=:id;');
         $stmt->bindParam(':id', $grupaId, PDO::PARAM_INT);
@@ -59,10 +56,7 @@ class Grupa {
 	public function fetchAll() {
 
         $stmt = $this->db->prepare('SELECT 
-                                        `Grupa`.`NUME`,
-										`Grupa`.`AN`,
-										`Grupa`.`SEF_GRUPA`,
-										`Grupa`.`PROFIL`,
+                                       *
                                     FROM `ULBSPlatform`.`Grupa`');
 
         return $stmt->execute() ? $stmt->fetchAll(PDO::FETCH_ASSOC) : FALSE;
@@ -99,14 +93,15 @@ class Grupa {
      * @return bool
      */
     public function updateGrupa($id, $nume, $an, $sef_grupa, $profil) {
-
+        
         $stmt = $this->db->prepare('UPDATE `ULBSPlatform`.`Grupa`
-                                SET
-                                `NUME` =:nume,
-                                `AN` =:an,
-                                `SEF_GRUPA`` =:sef_grupa
-								`PROFIL` =:profil
-                                WHERE `ID` =:id;');
+                                    SET
+                                    `NUME` =:nume,
+                                    `AN` =:an,
+                                    `SEF_GRUPA` =:sef_grupa,
+                                    `PROFIL` =:profil
+                                    WHERE `ID` =:id;
+                                    ');
         $stmt->bindParam(':nume', $nume, PDO::PARAM_STR);
         $stmt->bindParam(':an', $an, PDO::PARAM_INT);
         $stmt->bindParam(':sef_grupa', $sef_grupa, PDO::PARAM_STR);
@@ -125,27 +120,59 @@ class Grupa {
      * @param String $profil
      * @return GrupaId or false
      */
-    public function addGrupa($id, $nume, $an, $sef_grupa, $profil) {
+    public function addGrupa($nume, $an, $profil) {
 
         $stmt = $this->db->prepare('INSERT INTO `ULBSPlatform`.`Grupa`
                                         (
                                         `NUME`,
                                         `AN`,
-                                        `SEF_GRUPA``,
                                         `PROFIL`)
                                         VALUES
                                         (
                                         :nume,
                                         :an,
-                                        :sef_grupa,
                                         :profil);');
 
         $stmt->bindParam(':nume', $nume, PDO::PARAM_STR);
         $stmt->bindParam(':an', $an, PDO::PARAM_INT);
-        $stmt->bindParam(':sef_grupa', $sef_grupa, PDO::PARAM_STR);
         $stmt->bindParam(':profil', $profil, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->execute() ? $GrupaId = $this->db->lastInsertId() : false;
     }
-	
+    
+    /**
+     * 
+     * Fetch grupa users <br>
+     * @param int $id
+     * @return array or false
+     */
+    public function fetchGrupaUsers($id) {
+        
+        $stmt = $this->db->prepare('SELECT `User`.`ID`,
+                                        `User`.`NUME`,
+                                        `User`.`PRENUME`
+                                    FROM `ULBSPlatform`.`User`,`ULBSPlatform`.`User_Grupa`,`ULBSPlatform`.`Grupa`
+                                    WHERE `ULBSPlatform`.`User_Grupa`.`ID_USER`=`ULBSPlatform`.`User`.`ID`
+                                    AND `ULBSPlatform`.`User_Grupa`.`ID_GRUPA`=`ULBSPlatform`.`Grupa`.`ID`
+                                    AND `ULBSPlatform`.`Grupa`.`ID`=:id;
+                                    ');
+           $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        return $stmt->execute() ? $stmt->fetchAll(PDO::FETCH_ASSOC) : FALSE;
+ }
+ 
+	   /**
+     * 
+     * Delete grupa <br>
+     * @param int $id
+     * @return bool
+     */
+    public function deleteGrupa($id) {
+        
+        $stmt = $this->db->prepare('DELETE from `ULBSPlatform`.`Grupa`
+                                    WHERE `ID` =:id;');
+           $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        return $stmt->execute() ? true : false;
+ }
 }

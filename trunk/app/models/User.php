@@ -389,7 +389,7 @@ class User {
      */
     public function deleteUser($id) {
 
-        $stmt = $this->db->prepare('DELETE `ULBSPlatform`.`User`
+        $stmt = $this->db->prepare('DELETE from `ULBSPlatform`.`User`
                                     WHERE `ID` =:id;');
            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 

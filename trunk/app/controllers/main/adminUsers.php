@@ -5,7 +5,7 @@ function _adminUsers() {
 	switch ($_POST['actiune']) {
 		case 'edit':
 			$user_id = explode("_", $_POST['1'])[1];
-			$user = new User(getDbh());
+			$user = new User(getdbh());
 			$user_details = $user->getUserDetails($user_id);
 			$result['user'] = $user_details;
 			$data['msg'][]=View::do_fetch(VIEW_PATH.'modifica_user.tpl.php', $result);

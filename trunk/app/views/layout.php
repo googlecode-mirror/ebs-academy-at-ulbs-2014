@@ -18,6 +18,10 @@
 
 			<div id="main">
 				<?php echo (isset($msg) && is_array($msg)) ? implode("\n",$msg) : ''?>
+                            
+                                <?php echo (isset($redirect) && is_array($redirect))?' Vei fi redirectat in 3 secunde'
+                                                                                    . header( "refresh:3;url=".  myUrl($redirect[0])   )
+                                                                                    .' sau apasa <a href='.myUrl($redirect[0]).'>aici</a>':'';?>
 			</div>
 			
 			

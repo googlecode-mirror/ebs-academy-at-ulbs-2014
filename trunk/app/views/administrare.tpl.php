@@ -18,7 +18,7 @@
         <div id='administrare_header_text'> grupe</div>
         <div id='administrare_links'>
              <ul>
-                <li><a href="#"> item1 </a></li>
+                <li><a href="administrare/show_grup"> Afisaza grupe </a></li>
                 <li><a href="#"> item 2 </a></li>
                 <li><a href="#"> item3 </a></li>
                 <li><a href="#"> item4 </a></li>
