@@ -17,12 +17,13 @@
         $lengthOfArray = count($grupa);
         for ($key_Number = 0; $key_Number < $lengthOfArray; $key_Number++) {
             echo "<tr><td><input type=\"checkbox\" name=\"  checkbox_" . $grupa[$key_Number]['ID'] . "\" value=\"id_" . $grupa[$key_Number]['ID']."\">
-                    </td><td>" . $grupa[$key_Number]['NUME'] . "</td>
+                    </td><td> <a href=".  myUrl('administrare/showGrupaDetails')."/". $grupa[$key_Number]['ID'] ."/".$grupa[$key_Number]['NUME'] ." >" . $grupa[$key_Number]['NUME'] . "</a></td>
+                        
                     <td>" . $grupa[$key_Number]['AN'] . "</td>
                     <td>" . $grupa[$key_Number]['SEF_GRUPA'] . "</td>
                     <td>" . $grupa[$key_Number]['PROFIL'] . "</td>
-                    <td><input type=\"submit\" value=\"Modifica\" onclick=\"myFunction('edit')\"></td>
-                    <td><input type=\"submit\" value=\"Sterge\" onclick=\"myFunction('delete')\"></td></tr>";
+                    <td><input type=\"submit\"  value=\"Modifica\" onclick=\"myFunction('edit')\"></td>
+                    <td><input type=\"submit\"  value=\"Sterge\" onclick=\"myFunction('delete')\"></td></tr>";
         }
         ?>
 
@@ -34,7 +35,7 @@
             <td></td>
             <td></td> 
             <td></td>
-            <td></td> 
+            <td><input type="submit" name="Sterge_tot" value="Sterge tot" onclick="myFunction('detele_all')"></td> 
         </tr>
     </form>
 </table>

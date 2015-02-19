@@ -243,7 +243,7 @@ class User {
      * @param String $tip
      * @return user_id or false
      */
-    public function addUser($email, $parola, $nume, $prenume, $tip) {
+    public function addUser($email, $parola, $nume, $prenume) {
 
         $stmt = $this->db->prepare('INSERT INTO `ULBSPlatform`.`User`
                                         (
@@ -251,7 +251,6 @@ class User {
                                         `PAROLA`,
                                         `NUME`,
                                         `PRENUME`,
-                                        `TIP`,
                                         `DATAADAUGARII`,
                                         `STATUS`)
                                         VALUES
@@ -260,7 +259,6 @@ class User {
                                         :parola,
                                         :nume,
                                         :prenume,
-                                        :tip,
                                         now(),
                                         \'new\');');
 
@@ -268,7 +266,6 @@ class User {
         $stmt->bindParam(':parola', $parola, PDO::PARAM_STR);
         $stmt->bindParam(':nume', $nume, PDO::PARAM_STR);
         $stmt->bindParam(':prenume', $prenume, PDO::PARAM_STR);
-        $stmt->bindParam(':tip', $tip, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->execute() ? $user_id = $this->db->lastInsertId() : false;
     }
@@ -296,6 +293,8 @@ class User {
             return 'false';
         }
     }
+    
+  
 
     /**
      * 

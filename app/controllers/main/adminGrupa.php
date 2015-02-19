@@ -4,26 +4,30 @@ function _adminGrupa() {
 //$_POST['checkbox']  = "id_1"- inseamna ca in interfata s-a selectat checkbox pt user_id 1
 
     switch ($_POST['actiune']) {
+        
         case 'edit':
+            
             reset($_POST);
             $key = key($_POST);
             $grupa_id = explode("_", $key);
 
             $grupa = new Grupa(getDbh());
             $grupa_details = $grupa->getGrupaDetails($grupa_id[1]);
-            $grupa_users=$grupa->fetchGrupaUsers($grupa_id[1]);
-            
+            $grupa_users = $grupa->fetchGrupaUsers($grupa_id[1]);
+
             $result['grupa'] = $grupa_details;
-            $result['studenti']=$grupa_users;
+            $result['studenti'] = $grupa_users;
             $data['msg'][] = View::do_fetch(VIEW_PATH . 'modifica_grupa.tpl.php', $result);
             View::do_dump(VIEW_PATH . 'layout.php', $data);
             break;
-        case 'delete':
+        
+        case 'delete_all':
+            
             $sterse = 0;
             $nesterse = 0;
             $grupa = new Grupa(getDbh());
             foreach ($_POST as $key) {
-                if ($key == 'delete') {
+                if ($key == 'delete_all') {
                     continue;
                 } else {
                     $grupa_id = explode("_", $key);
@@ -47,8 +51,29 @@ function _adminGrupa() {
             }
             break;
 
-        case 'add':
+        case 'delete':
             
+            reset($_POST);
+            $key = key($_POST);
+            $grupa_id = explode("_", $key);
+
+            $grupa = new Grupa(getDbh());
+            if ($grupa->deleteGrupa($grupa_id[1]) == true) {
+                $data['msg'][] = " Grupa a  fost stersa cu success";
+                $data['redirect'][] = 'administrare/show_grup';
+                View::do_dump(VIEW_PATH . 'layout.php', $data);
+            } else {
+
+                $data['msg'][] = " Grupa nu a fost stersa";
+                $data['redirect'][] = 'administrare/show_grup';
+                View::do_dump(VIEW_PATH . 'layout.php', $data);
+            }
+
+            break;
+
+
+        case 'add':
+
             $grupa = new Grupa(getDbh());
             $result = $grupa->addGrupa($_POST['nume'], $_POST['an'], $_POST['profil']);
             if ($result) {
