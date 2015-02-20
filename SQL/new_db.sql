@@ -26,10 +26,10 @@ DROP TABLE IF EXISTS `Examen`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Examen` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `IDGRUPA` int(11) DEFAULT NULL,
-  `IDMATERIE` int(11) DEFAULT NULL,
-  `DATA` datetime DEFAULT NULL,
-  `TIP_EXAMEN` int(11) DEFAULT NULL,
+  `IDGRUPA` int(11) NOT NULL,
+  `IDMATERIE` int(11) NOT NULL,
+  `DATA` datetime NOT NULL,
+  `TIP_EXAMEN` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -57,7 +57,7 @@ CREATE TABLE `Grupa` (
   `SEF_GRUPA` varchar(50) DEFAULT NULL,
   `PROFIL` varchar(50) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,6 +66,7 @@ CREATE TABLE `Grupa` (
 
 LOCK TABLES `Grupa` WRITE;
 /*!40000 ALTER TABLE `Grupa` DISABLE KEYS */;
+INSERT INTO `Grupa` VALUES (1,'ebs',3,'asd','calc'),(2,'web',2,'Contiu Ioan','fvc'),(3,'e foarte bine1',23,'ef','23'),(4,'222',2,'dani cine altul?','calculatoare'),(5,'gvhb',3,'hbj','gvhbj'),(6,'hj',3,'hjk','bjk'),(7,'bjmn ',4,'hbnjmk,','nm'),(12,'test',1,NULL,'test'),(13,'test',1,NULL,'test');
 /*!40000 ALTER TABLE `Grupa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -306,13 +307,13 @@ CREATE TABLE `User` (
   `PRENUME` varchar(100) CHARACTER SET latin1 NOT NULL,
   `TIP` enum('student','profesor','admin') CHARACTER SET latin1 NOT NULL,
   `DATAADAUGARII` date NOT NULL,
-  `STATUS` enum('ACTIVE','DEL','SUS','NEW','NEW_PASS') CHARACTER SET latin1 NOT NULL,
+  `STATUS` enum('ACTIV','DEL','SUS','NEW','NEW_PASS') CHARACTER SET latin1 NOT NULL,
   `FORGOT_PASS_TOKEN` varchar(26) DEFAULT NULL,
   `FORGOT_PASS_EXPIRATION_DATE` date DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `email` (`EMAIL`),
   KEY `tip` (`TIP`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -321,8 +322,37 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES (1,'test','test','test','test','profesor','0000-00-00','AC',NULL,NULL),(2,'icontiu@gmail.com','nik','Contiu','Ioan','admin','2015-02-06','AC',NULL,NULL);
+INSERT INTO `User` VALUES (1,'test','test','test','test','profesor','0000-00-00','ACTIV',NULL,NULL),(2,'icontiu@gmail.com','asdasd','Contiu','Ioan','admin','2015-02-06','ACTIV','','2015-02-18'),(3,'nik_dik_27@yahoo.com','qwerty','Bisceanu','daniel','student','2015-02-17','ACTIV',NULL,NULL);
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `User_Grupa`
+--
+
+DROP TABLE IF EXISTS `User_Grupa`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `User_Grupa` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_USER` int(11) NOT NULL,
+  `ID_GRUPA` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `ID_USER_GRUPA_idx` (`ID_USER`),
+  KEY `ID_GRUPA_GRUPA_idx` (`ID_GRUPA`),
+  CONSTRAINT `ID_GRUPA_GRUPA` FOREIGN KEY (`ID_GRUPA`) REFERENCES `Grupa` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `ID_USER_GRUPA` FOREIGN KEY (`ID_USER`) REFERENCES `User` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `User_Grupa`
+--
+
+LOCK TABLES `User_Grupa` WRITE;
+/*!40000 ALTER TABLE `User_Grupa` DISABLE KEYS */;
+INSERT INTO `User_Grupa` VALUES (1,1,2),(2,2,2);
+/*!40000 ALTER TABLE `User_Grupa` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -393,4 +423,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-02-11 10:43:49
+-- Dump completed on 2015-02-18 22:30:05
