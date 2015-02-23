@@ -19,7 +19,7 @@ class User {
      */
     public function checkPassword($email, $pass) {
         $result = array();
-
+        $pass=md5($pass);
         $stmt = $this->db->prepare('SELECT
                                     `User`.`ID`,
                                     `User`.`TIP`
@@ -30,7 +30,7 @@ class User {
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':pass', $pass, PDO::PARAM_STR);
         
-        
+       
         
         if ($stmt->execute()) {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -244,7 +244,7 @@ class User {
      * @return user_id or false
      */
     public function addUser($email, $parola, $nume, $prenume) {
-
+        $parola=md5($parola);
         $stmt = $this->db->prepare('INSERT INTO `ULBSPlatform`.`User`
                                         (
                                         `EMAIL`,
@@ -263,10 +263,9 @@ class User {
                                         \'new\');');
 
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-        $stmt->bindParam(':parola', $parola, PDO::PARAM_STR);
+        $stmt->bindParam(':parola', $parola);
         $stmt->bindParam(':nume', $nume, PDO::PARAM_STR);
         $stmt->bindParam(':prenume', $prenume, PDO::PARAM_STR);
-        $stmt->execute();
         return $stmt->execute() ? $user_id = $this->db->lastInsertId() : false;
     }
 
@@ -364,7 +363,7 @@ class User {
      * @return bool
      */
     public function newPassword($password, $id) {
-
+        $password=md5($password);
 
         $stmt = $this->db->prepare('UPDATE `ULBSPlatform`.`User`
                                             SET
