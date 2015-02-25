@@ -32,7 +32,7 @@
 
         <tr>
             <td>Status</td>
-            <td><input type="text" name="data" style="width:150px"
+            <td><input type="text" name="status" style="width:150px"
                        value="<?php echo isset($user[0]['STATUS']) ? $user[0]['STATUS'] : '';?>" /></td>
         </tr>
 
