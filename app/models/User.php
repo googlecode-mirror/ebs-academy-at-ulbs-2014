@@ -258,6 +258,7 @@ class User {
                                         `PAROLA`,
                                         `NUME`,
                                         `PRENUME`,
+                                        `TIP`,
                                         `DATAADAUGARII`,
                                         `STATUS`)
                                         VALUES
@@ -266,6 +267,7 @@ class User {
                                         :parola,
                                         :nume,
                                         :prenume,
+                                        \'student\',
                                         now(),
                                         \'new\');');
 
