@@ -25,12 +25,6 @@
         </tr>
 
         <tr>
-            <td>Data</td>
-            <td><input type="date" name="data" style="width:150px"
-                       value="<?php echo isset($user[0]['DATAADAUGARII']) ? $user[0]['DATAADAUGARII'] : '';?>" /></td>
-        </tr>
-
-        <tr>
             <td>Status</td>
             <td><input type="text" name="status" style="width:150px"
                        value="<?php echo isset($user[0]['STATUS']) ? $user[0]['STATUS'] : '';?>" /></td>
