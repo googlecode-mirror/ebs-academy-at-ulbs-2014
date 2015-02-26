@@ -2,10 +2,8 @@
 #tabel{
     border:1px solid black;
     border-collapse:collapse;
-    width:auto;
-    margin:auto;
     margin-top:10px;
-    text-align:center;
+    
 }
 
 th{
@@ -79,8 +77,8 @@ th{
 }
 
 #header{
-    margin:auto;
-    width:1000px;
+    margin-left:200px;
+    width:650px;
     border-bottom:1px solid black;
     background-color: #0066CC;
     height: 50px;
@@ -88,8 +86,8 @@ th{
 }
 
 #footer{
-    margin:auto;
-    width:1000px;
+    margin-left:200px;
+    width:650px;
     border-top:1px solid black;
     background-color: #0066CC;
     height: 80px;
@@ -103,7 +101,6 @@ li{
 
 #afisare_user, #afisare_grupa{
     width:750px;
-    margin:auto;
     margin-top:10px;
     text-align:center;
 }
