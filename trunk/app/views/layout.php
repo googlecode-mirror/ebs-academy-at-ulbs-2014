@@ -3,9 +3,11 @@
 	<head>
 		<title><?php echo $GLOBALS['sitename'];?></title>
 		<link rel="stylesheet" type="text/css" <?php echo 'href="'.WEB_DOMAIN.'/css/style.css"';?> />
-                <script type='text/javascript' <?php echo 'src="'.WEB_DOMAIN.'/js/jquery.js"';?>></script>
+                <script type='text/javascript' <?php echo 'src="'.WEB_DOMAIN.'/js/jquery-2.1.3.js"';?>></script>
                 <script <?php echo 'src="'.WEB_DOMAIN.'/js/script.js"';?>></script> 
                 <script src='https://www.google.com/recaptcha/api.js'></script>
+              
+                
             
 	</head>
 

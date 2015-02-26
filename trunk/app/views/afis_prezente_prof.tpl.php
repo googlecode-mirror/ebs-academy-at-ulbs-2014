@@ -17,7 +17,7 @@ $prezenta = array
         'data' => '28-11-2014')
 );
 ?>
-<form method="post" action="<?php echo myUrl('main/adminUsers') ?>"> 
+<form method="post" action="<?php echo myUrl('main/adminUsers') ?>" > 
     <div>
         <div class="afis_checkbox"> </div>
         <div class="crt"> Nr Crt. </div>
@@ -38,13 +38,13 @@ $prezenta = array
 $i = 1;
 for ($key_Number = 0; $key_Number < count($prezenta); $key_Number++) {
     echo '<div style="clear:both;">
-            <div class="afis_checkbox"> <input type="checkbox" name="' . $prezenta[$key_Number]['id'] . '"/></div>
+            <div class="afis_checkbox"> <input type="checkbox" name=checkbox_"' . $prezenta[$key_Number]['id'] . '"/></div>
             <div class="crt">' . $i . '</div>
             <div class="mat">' . $prezenta[$key_Number]['mat'] . '</div>
             <div class="prezenta">' . $prezenta[$key_Number]['prez'] . '</div>
             <div class="data">' . $prezenta[$key_Number]['data'] . '</div>
-            <div class="sterge"><input type="submit" value="Sterge" onclick="myFunction(\'delete\')"></div>
-            <div class="modifica"><input type="submit" value="Modifica" onclick="myFunction(\'edit\')"></div>
+            <div class="sterge"><input type="submit" value="Sterge" onclick="myFunction(\'delete\');return verifica(\'delete\');"></div>
+            <div class="modifica"><input type="submit" value="Modifica" onclick="myFunction(\'edit\');return verifica(\'edit\');"></div>
 	</div>
 				';
 
@@ -58,8 +58,9 @@ for ($key_Number = 0; $key_Number < count($prezenta); $key_Number++) {
         <div class="prezenta"></div>
         <div class="data"> </div>
         <input type="hidden" name="actiune" id="actiune">
-        <div class="sterge"> <input type="submit" name="sterge"  value="Delete all"/></div>
-        <div class="modifica"> <input type="submit" name="modifica"  value="Update all"/> </div>
+        <div class="sterge"> <input type="submit" name="sterge"  value="Delete all" onclick="return verifica('delete all');"/></div>
+        <div class="modifica">  </div>
     </div>
 
 </form>
+</div>

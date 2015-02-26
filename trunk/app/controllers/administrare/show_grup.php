@@ -1,5 +1,6 @@
     <?php
 function _show_grup(){
+    isUserLoggedIn();
     $grupa=new Grupa(getdbh());
     $allGroups=$grupa->fetchAll();
     $result['grupa']=$allGroups;
