@@ -212,21 +212,28 @@ class User {
      * 
      * Set user email <br>
      * @param int $id
+     * @param String $email
      * @param String $nume
      * @param String $prenume
+     * @param String $type
      * @param String $status
      * @return bool
      */
-    public function updateUser($id, $nume, $prenume, $status) {
+    public function updateUser($id, $email, $nume, $prenume, $type, $status) {
 
         $stmt = $this->db->prepare('UPDATE `ULBSPlatform`.`User`
                                 SET
+                                `EMAIL` =:email,
                                 `NUME` =:nume,
                                 `PRENUME` =:prenume,
+                                `TIP` =:type,
                                 `STATUS` =:status
-                                WHERE `ID` =:id;');
+                                WHERE `ID` =:id;
+                                ');
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':nume', $nume, PDO::PARAM_STR);
         $stmt->bindParam(':prenume', $prenume, PDO::PARAM_STR);
+        $stmt->bindParam(':type', $type, PDO::PARAM_STR);
         $stmt->bindParam(':status', $status, PDO::PARAM_STR);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
