@@ -29,8 +29,8 @@
 		<td>" . $user[$key_Number]['TIP'] . "</td>
                 <td>" . $user[$key_Number]['STATUS'] . "</td>
 		<td>" . $user[$key_Number]['DATAADAUGARII'] . "</td>
-		<td><input type=\"submit\" value=\"Modifica\" onclick=\"myFunction('edit')\"></td>
-		<td><input type=\"submit\" value=\"Sterge\" onclick=\"myFunction('delete')\"></td></tr>";
+		<td><input type=\"submit\" value=\"Modifica\" onclick=\"myFunction('edit');return verifica('edit');\"></td>
+		<td><input type=\"submit\" value=\"Sterge\" onclick=\"myFunction('delete');return verifica('delete');\"></td></tr>";
             }
             ?>
 
@@ -43,7 +43,7 @@
                 <td></td> 
                 <td></td>
                 <td></td> 
-                <td><input type="submit" value="Sterge tot" onclick="myFunction('delete_all')"></td> 
+                <td><input type="submit" value="Sterge tot" onclick="myFunction('delete_all');return verifica('delete all');"></td> 
             </tr>
         </form>
     </table>

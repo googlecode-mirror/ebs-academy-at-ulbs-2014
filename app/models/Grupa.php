@@ -136,7 +136,7 @@ class Grupa {
         $stmt->bindParam(':nume', $nume, PDO::PARAM_STR);
         $stmt->bindParam(':an', $an, PDO::PARAM_INT);
         $stmt->bindParam(':profil', $profil, PDO::PARAM_STR);
-        $stmt->execute();
+       
         return $stmt->execute() ? $GrupaId = $this->db->lastInsertId() : false;
     }
     
@@ -175,4 +175,49 @@ class Grupa {
 
         return $stmt->execute() ? true : false;
  }
+    
+    /**
+     * 
+     * add grupa member<br>
+     * @param int $idGrupa
+     * @param int $idUser
+     * @return bool
+     */
+    public function addGrupaMember($idGrupa,$idUser) {
+        
+        $stmt = $this->db->prepare('INSERT INTO `ULBSPlatform`.`User_Grupa`
+                                        (
+                                        `ID_USER`,
+                                        `ID_GRUPA`)
+                                        VALUES
+                                        (:idUser,
+                                        :idGrupa);
+                                        ');
+           $stmt->bindParam(':idGrupa', $idGrupa, PDO::PARAM_INT);
+            $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+
+        return $stmt->execute() ? true : false;
+ }
+ 
+   /**
+     * 
+     * verificare daca studentul e inscris la materia respectiva<br>
+     * @param int $idGrupa
+     * @param int $idUser
+     * @return bool
+     */
+    public function checkRegister($idGrupa,$idUser) {
+        
+        $stmt = $this->db->prepare('SELECT * from `ULBSPlatform`.`User_Grupa`
+                                        (
+                                        `ID_USER`= :idUser
+                                        `ID_GRUPA`=:idGrupa;
+                                      ');
+           $stmt->bindParam(':idGrupa', $idGrupa, PDO::PARAM_INT);
+            $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+
+        return $stmt->execute() ? false : true;
+ }
+ 
+ 
 }

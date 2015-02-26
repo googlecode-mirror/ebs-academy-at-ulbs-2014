@@ -1,12 +1,13 @@
 <?php
 
 function _adminGrupa() {
+    isUserLoggedIn();
 //$_POST['checkbox']  = "id_1"- inseamna ca in interfata s-a selectat checkbox pt user_id 1
 
     switch ($_POST['actiune']) {
-        
+
         case 'edit':
-            
+
             reset($_POST);
             $key = key($_POST);
             $grupa_id = explode("_", $key);
@@ -20,17 +21,21 @@ function _adminGrupa() {
             $data['msg'][] = View::do_fetch(VIEW_PATH . 'modifica_grupa.tpl.php', $result);
             View::do_dump(VIEW_PATH . 'layout.php', $data);
             break;
-        
+
         case 'delete_all':
-            
+
             $sterse = 0;
             $nesterse = 0;
             $grupa = new Grupa(getDbh());
+
             foreach ($_POST as $key) {
-                if ($key == 'delete_all') {
+
+                if ($key == 'delete_all' || $key == 'Sterge tot') {
                     continue;
                 } else {
+
                     $grupa_id = explode("_", $key);
+
                     if ($grupa->deleteGrupa($grupa_id[1]) == true) {
                         $sterse++;
                     } else {
@@ -52,7 +57,7 @@ function _adminGrupa() {
             break;
 
         case 'delete':
-            
+
             reset($_POST);
             $key = key($_POST);
             $grupa_id = explode("_", $key);

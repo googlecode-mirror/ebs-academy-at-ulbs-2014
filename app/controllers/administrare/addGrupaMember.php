@@ -1,16 +1,15 @@
 <?php
 
-function _updateGrupa() {
+function _addGrupaMember() {
     isUserLoggedIn();
     $grupa = new Grupa(getdbh());
-    $result = $grupa->updateGrupa($_POST['idGrupa'], $_POST['nume'], $_POST['an'], $_POST['sef_grupa'], $_POST['profil']);
-    if ($result) {
-        $data['msg'][] = 'Grupa a fost modificata cu success';
+    $addMember = $grupa->addGrupaMember($_POST['grupaID'], $_POST['userID']);
+    if ($addMember) {
+        $data['msg'][] = "Studentul a fost inscris in grupa";
         $data['redirect'][] = 'administrare/show_grup';
-
         View::do_dump(VIEW_PATH . 'layout.php', $data);
     } else {
-        $data['msg'][] = "Eroare la modificarea grupei";
+        $data['msg'][] = "Eroare la inscriere";
         $data['redirect'][] = 'administrare/show_grup';
         View::do_dump(VIEW_PATH . 'layout.php', $data);
     }
