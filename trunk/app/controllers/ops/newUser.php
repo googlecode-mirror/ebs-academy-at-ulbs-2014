@@ -1,18 +1,26 @@
 <?php
 function _newUser() {
-	$user=new User(getdbh());
+    $user=new User(getdbh());
         
-       $email=$user->checkEmail($_POST['email']);
+    $email=$user->checkEmail($_POST['email']);
        
-       if(isset($email['ID'])){//daca in rezultat primesc id atunci emailul nu este disponibil
-               $data['msg'][] = " Acest email nu este disponibil";
-                $data['redirect'][] = 'main/new';
-                View::do_dump(VIEW_PATH . 'layout.php', $data);
-       }
-       else
-       {        //TODO sa adauge in baza de date, sa genereze cod unic sa trimita email
-           
-            
-       }
+    if(isset($email['ID'])){
+        $data['msg'][] = " Acest email nu este disponibil! Va rugam alegeti altul!";
+        $data['redirect'][] = 'main/new';
+        View::do_dump(VIEW_PATH . 'layout.php', $data);
+    }
+    else {        
+        $result = $user->addUser($_POST['email'], $_POST['nume'], $_POST['prenume'], $_POST['password1']);
+        if ($result) {
+            $data['msg'][] = 'Contul de student a fost creat!';
+            $data['redirect'][] = 'main/index';
+            View::do_dump(VIEW_PATH . 'layout.php', $data);           
+        } 
+        else {
+            $data['msg'][] = "Eroare la crearea contului!";
+            $data['redirect'][] = 'main/index';
+            View::do_dump(VIEW_PATH . 'layout.php', $data);
+        }
+    }
 }
 
