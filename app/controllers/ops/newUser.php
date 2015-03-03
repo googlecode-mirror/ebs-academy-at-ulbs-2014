@@ -10,7 +10,7 @@ function _newUser() {
         View::do_dump(VIEW_PATH . 'layout.php', $data);
     }
     else {        
-        $result = $user->addUser($_POST['email'], $_POST['nume'], $_POST['prenume'], $_POST['password1']);
+        $result = $user->addUser($_POST['email'], $_POST['password1'], $_POST['nume'], $_POST['prenume'] );
         if ($result) {
             $data['msg'][] = 'Contul de student a fost creat!';
             $data['redirect'][] = 'main/index';
