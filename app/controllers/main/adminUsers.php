@@ -29,9 +29,11 @@ function _adminUsers() {
             $user = new User(getDbh());
             if ($user->deleteUser($user_id[1]) == true) {
                 $data['msg'][] = " Userul a  fost sters cu success";
+                $data['redirect'][]='administrare/show_users';
                 View::do_dump(VIEW_PATH . 'layout.php', $data);
             } else {
                 $data['msg'][] = " Userul nu a fost sters";
+                $data['redirect'][]='administrare/show_users';
                 View::do_dump(VIEW_PATH . 'layout.php', $data);
             }
             break;
@@ -55,9 +57,11 @@ function _adminUsers() {
 
             if ($sterse > 0) {
                 $data['msg'][] = $sterse . "useri au fost stersi cu success";
+                $data['redirect'][]='administrare/show_users';
                 View::do_dump(VIEW_PATH . 'layout.php', $data);
             } else {
                 $data['msg'][] = $nesterse . "useri nu au fost stersi";
+                $data['redirect'][]='administrare/show_users';
                 View::do_dump(VIEW_PATH . 'layout.php', $data);
             }
             break;
