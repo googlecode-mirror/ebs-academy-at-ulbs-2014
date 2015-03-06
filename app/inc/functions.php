@@ -27,11 +27,11 @@ function sendEmail($subject, $body, $from, $to) {
 	require_once APP_PATH . 'helpers/PHPMailer-master/class.phpmailer.php';
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->SMTPDebug = 1;
+        $mail->SMTPDebug = 2;
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = 'ssl';
-        $mail->Host = 'tls://smtp.gmail.com';
-        $mail->Port = '465';
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Port = 465;
         $mail->isMail(true);
         $mail->Username = 'icontiu@gmail.com';
         $mail->Password = 'pass';
@@ -39,7 +39,7 @@ function sendEmail($subject, $body, $from, $to) {
         $mail->Subject =$subject;
         $mail->Body = $body;
         $mail->addAddress($to);
-
+       
         if ($mail->send()) {
 
           return true;

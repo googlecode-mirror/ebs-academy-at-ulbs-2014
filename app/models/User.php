@@ -188,6 +188,25 @@ class User {
 
         return $stmt->execute() ? true : false;
     }
+    
+    /**
+     * 
+     * Set user type <br>
+     * @param int $id
+     * @param String $type 
+     * @return bool
+     */
+    public function setStatus($id, $status) {
+
+        $stmt = $this->db->prepare('UPDATE `ULBSPlatform`.`User`
+                                SET
+                                `STATUS` =:status
+                                WHERE `ID` =:id;');
+        $stmt->bindParam(':status', $status, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        return $stmt->execute() ? true : false;
+    }
 
     /**
      * 
@@ -336,6 +355,34 @@ class User {
 
     /**
      * 
+     * Set token for new pass and send email <br>
+     * @param int $id
+     * @param String $email
+     * @return $token or false
+     */
+    public function newUserToken($id) {
+
+        $key1 = uniqid($id,true);
+        $key= str_replace(".","",$key1);
+
+        $stmt = $this->db->prepare('UPDATE `ULBSPlatform`.`User`
+                                    SET
+                                    `STATUS` =\'NO_CONFIRMATION\',
+                                    `FORGOT_PASS_TOKEN` =:key,
+                                    `FORGOT_PASS_EXPIRATION_DATE` =now()+INTERVAL 2 DAY
+                                    WHERE `ID` =:id');
+
+        $stmt->bindParam(':key', $key);
+        $stmt->bindParam(':id', $id);
+
+        if ($stmt->execute()) {
+            return $key;
+        } else {
+            return false;
+        }
+    }
+    /**
+     * 
      * Check if token is corect and not expired <br>
      * @param String $token
      * @return array or bool
@@ -365,6 +412,38 @@ class User {
         }
     }
 
+    /**
+     * 
+     * Check if token is corect and not expired <br>
+     * @param String $token
+     * @return array or bool
+     */
+    public function checkConfirmationToken($token) {
+        $result = array();
+
+        $stmt = $this->db->prepare('SELECT 
+                                        `User`.`ID`,
+                                        `User`.`EMAIL`
+                                    FROM 
+                                        `ULBSPlatform`.`User`
+                                    WHERE 
+                                        FORGOT_PASS_TOKEN=:token
+                                    AND now()<(select FORGOT_PASS_EXPIRATION_DATE from `ULBSPlatform`.`User` where FORGOT_PASS_TOKEN=:token )
+                                    AND `User`.`STATUS`=\'NO_CONFIRMATION\';
+                                    ');
+        $stmt->bindParam(':token', $token, PDO::PARAM_STR);
+
+
+
+        $stmt->execute();
+        if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            return $row;
+        } else {
+            return 'false';
+        }
+    }
+
+    
     /**
      * 
      * Set new passwotd <br>
