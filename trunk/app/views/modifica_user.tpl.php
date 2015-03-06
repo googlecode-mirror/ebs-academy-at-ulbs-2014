@@ -21,8 +21,30 @@
 
         <tr>
             <td>Tip</td>
-            <td><input type="text" name="type" style="width:150px"
-                       value="<?php echo isset($user[0]['TIP']) ? $user[0]['TIP'] : ''; ?>" /></td>
+            <td>
+                <select name="type">
+                    <?php
+                    $type = $user[0]['TYPE'];
+                    if ($type == 'student') {
+                        echo '<option selected="selected" value="student">Student</option>';
+                    } else {
+                        echo '<option value="student">Student</option>';
+                    }
+
+                    if ($type == 'profesor') {
+                        echo '<option selected="selected" value="profesor">Profesor</option>';
+                    } else {
+                        echo '<option  value="profesor">Profesor</option>';
+                    }
+
+                    if ($select == 'admin') {
+                        echo '<option selected="selected" value="admin">Admin</option>';
+                    } else {
+                        echo '<option  value="admin">Admin</option>';
+                    }
+                    ?>
+                </select>
+            </td>
         </tr>
 
         <tr>
