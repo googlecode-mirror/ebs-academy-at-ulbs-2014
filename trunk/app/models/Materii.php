@@ -1,4 +1,5 @@
 <?php
+
 class Materii {
 
     private $db;
@@ -8,7 +9,7 @@ class Materii {
         $this->db = $db;
     }
 
- /**
+	/**
      * 
      * Return materii details <br>
      * Campuri: <br>
@@ -24,15 +25,15 @@ class Materii {
         $result = array();
 
         $stmt = $this->db->prepare('SELECT
-                 (
-                 "SELECT `User`.`NUME`
-                    FROM `ULBSPlatform`.`User` 
-                        WHERE ID=:id_user;"
-                    ) AS USER,
+                    `Grupa`.`NUME`,
+                    `Materii`.`ID`,
                     `Materii`.`CREDITE`,
                     `Materii`.`DENUMIRE`
                 FROM `ULBSPlatform`.`Materii`
-                WHERE ID=:id;');
+                inner join `ULBSPlatform`.`materii_grupe`  
+                    on materii.ID = materii_grupe.ID_MATERIE
+		inner join `ULBSPlatform`.`Grupa`  
+                    on materii_grupe.ID_GRUPA = Grupa.ID');
         $stmt->bindParam(':id', $materiiId, PDO::PARAM_INT);
         $stmt->execute();
 
@@ -59,15 +60,15 @@ class Materii {
 	public function fetchAll() {
 
         $stmt = $this->db->prepare('SELECT
-                 (
-                 "SELECT `User`.`NUME`
-                    FROM `ULBSPlatform`.`User` 
-                        WHERE ID=:id_user;"
-                    ) AS USER,
+                    `Grupa`.`NUME`,
+                    `Materii`.`ID`,
                     `Materii`.`CREDITE`,
                     `Materii`.`DENUMIRE`
                 FROM `ULBSPlatform`.`Materii`
-                WHERE ID=:id;');
+                inner join `ULBSPlatform`.`Materii_grupe`  
+                    on materii.ID = materii_grupe.ID_MATERIE
+		inner join `ULBSPlatform`.`Grupa`  
+                    on materii_grupe.ID_GRUPA = grupa.ID');
 
         return $stmt->execute() ? $stmt->fetchAll(PDO::FETCH_ASSOC) : FALSE;
     }
@@ -80,16 +81,14 @@ class Materii {
      * @param String $denumire
      * @return bool
      */
-	 public function updateMaterii($id, $id_user, $credite, $denumire) {
+	 public function updateMaterii($id, $credite, $denumire) {
         
         $stmt = $this->db->prepare('UPDATE `ULBSPlatform`.`Materii`
                                     SET
-                                    `ID_USER` =:id_user,
                                     `CREDITE` =:credite,
                                     `DENUMIRE` =:denumire,
                                      WHERE `ID` =:id;
                                     ');
-        $stmt->bindParam(':id_user', $id_user, PDO::PARAM_STR);
         $stmt->bindParam(':credite', $credite, PDO::PARAM_INT);
         $stmt->bindParam(':denumire', $denumire, PDO::PARAM_STR);
 	    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -104,23 +103,36 @@ class Materii {
      * @param String $denumire
      * @return GrupaId or false
      */
-    public function addGrupa($id_user, $credite, $denumire) {
+    public function addMaterii($credite, $denumire) {
 
         $stmt = $this->db->prepare('INSERT INTO `ULBSPlatform`.`Materii`
                                         (
-                                        `ID_USER`,
                                         `CREDITE`,
                                         `DENUMIRE`)
                                         VALUES
                                         (
-                                        :id_user,
                                         :credite,
                                         :denumire);');
-
-        $stmt->bindParam(':id_user', $id_user, PDO::PARAM_STR);
+       
         $stmt->bindParam(':credite', $credite, PDO::PARAM_INT);
         $stmt->bindParam(':denumire', $denumire, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->execute() ? $MateriiId = $this->db->lastInsertId() : false;
     }
-}
+
+   /**
+     * 
+     * Delete materi <br>
+     * @param int $id
+     * @return bool
+     */
+    public function deleteMaterii($id) {
+        
+        $stmt = $this->db->prepare('DELETE from `ULBSPlatform`.`Materii`
+                                    WHERE `ID` =:id;');
+           $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        return $stmt->execute() ? true : false;
+ }
+ 
+ }

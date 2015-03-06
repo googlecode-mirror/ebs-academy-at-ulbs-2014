@@ -30,7 +30,7 @@
         <div id='administrare_header_text'> materii</div>
         <div id='administrare_links'>
              <ul>
-                <li><a href="#"> item 1 </a></li>
+                <li><a href="administrare/show_materii"> Afiseaza materii </a></li>
                 <li><a href="#"> item 2 </a></li>
                 <li><a href="#"> item3 </a></li>
                 <li><a href="#"> item4 </a></li>
