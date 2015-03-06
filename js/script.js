@@ -52,7 +52,7 @@ function checkPassSubmit() {
     }
 
 }
-function verifica(actiune)
+function checkForm(actiune)
 {
     var checkedNum = $('input[name*="checkbox_"]:checked').length;
     if (checkedNum > 0) {
@@ -69,7 +69,7 @@ function verifica(actiune)
 
         if (actiune == 'delete') {
             if (checkedNum == 1) {
-                return true;
+                return confirm('Are you sure you want to delete this record?');
             }
             else
             {

@@ -43,8 +43,8 @@ for ($key_Number = 0; $key_Number < count($prezenta); $key_Number++) {
             <div class="mat">' . $prezenta[$key_Number]['mat'] . '</div>
             <div class="prezenta">' . $prezenta[$key_Number]['prez'] . '</div>
             <div class="data">' . $prezenta[$key_Number]['data'] . '</div>
-            <div class="sterge"><input type="submit" value="Sterge" onclick="myFunction(\'delete\');return verifica(\'delete\');"></div>
-            <div class="modifica"><input type="submit" value="Modifica" onclick="myFunction(\'edit\');return verifica(\'edit\');"></div>
+            <div class="sterge"><input type="submit" value="Sterge" onclick="myFunction(\'delete\');return checkForm(\'delete\');"></div>
+            <div class="modifica"><input type="submit" value="Modifica" onclick="myFunction(\'edit\');return checkForm(\'edit\');"></div>
 	</div>
 				';
 
