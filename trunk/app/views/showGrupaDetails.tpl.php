@@ -13,7 +13,7 @@
     $max = count($users);
     for ($key_Number = 0; $key_Number < $max; $key_Number++) {
         echo '<div style="clear:both;">
-	<div class="crt">' . $i . '</div>
+	<div class="crt"> <input type="checkbox" name="checkbox_'. $users[$key_Number]['ID'] . "\" value=\"id_" . $users[$key_Number]['ID'].'"> </div>
 	<div class="mat">' . $users[$key_Number]['NUME'] . ' ' . $users[$key_Number]['PRENUME'] . '</div>
 	
         </div>';

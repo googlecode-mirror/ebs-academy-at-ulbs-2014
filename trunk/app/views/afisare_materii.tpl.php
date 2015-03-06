@@ -21,8 +21,8 @@
                     <td>" . $materii[$key_Number]['USER'] . "</td>
                     <td>" . $materii[$key_Number]['DENUMIRE'] . "</td>
                     <td>" . $materii[$key_Number]['CREDITE'] . "</td>
-                    <td><input type=\"submit\"  value=\"Modifica\" onclick=\"myFunction('edit')\"></td>
-                    <td><input type=\"submit\"  value=\"Sterge\" onclick=\"myFunction('delete')\"></td></tr>";
+                    <td><input type=\"submit\"  value=\"Modifica\" onclick=\"myFunction('edit');return checkForm(\'edit\');\"></td>
+                    <td><input type=\"submit\"  value=\"Sterge\" onclick=\"myFunction('delete');return checkForm(\'delete\');\"></td></tr>";
         }
         ?>
 
@@ -34,7 +34,7 @@
             <td></td>
             <td></td> 
             <td></td>
-            <td><input type="submit" name="Sterge_tot" value="Sterge tot" onclick="myFunction('detele_all')"></td> 
+            <td><input type="submit" name="Sterge_tot" value="Sterge tot" onclick="myFunction('detele_all'); checkForm('delete_all')"></td> 
         </tr>
     </form>
 </table>

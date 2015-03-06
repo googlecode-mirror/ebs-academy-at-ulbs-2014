@@ -22,8 +22,8 @@
                     <td>" . $grupa[$key_Number]['AN'] . "</td>
                     <td>" . $grupa[$key_Number]['SEF_GRUPA'] . "</td>
                     <td>" . $grupa[$key_Number]['PROFIL'] . "</td>
-                    <td><input type=\"submit\"  value=\"Modifica\" onclick=\"myFunction('edit');return verifica('edit');\"></td>
-                    <td><input type=\"submit\"  value=\"Sterge\" onclick=\"myFunction('delete');return verifica('edit');\"></td></tr>";
+                    <td><input type=\"submit\"  value=\"Modifica\" onclick=\"myFunction('edit');return checkForm('edit');\"></td>
+                    <td><input type=\"submit\"  value=\"Sterge\" onclick=\"myFunction('delete');return checkForm('delete');\"></td></tr>";
         }
         ?>
 
@@ -35,7 +35,7 @@
             <td></td>
             <td></td> 
             <td></td>
-            <td><input type="submit" name="Sterge_tot" value="Sterge tot" onclick="myFunction('delete_all');return verifica('delete all')"></td> 
+            <td><input type="submit" name="Sterge_tot" value="Sterge tot" onclick="myFunction('delete_all');return checkForm('delete all')"></td> 
         </tr>
     </form>
 </table>
