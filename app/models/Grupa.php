@@ -150,7 +150,8 @@ class Grupa {
         
         $stmt = $this->db->prepare('SELECT `User`.`ID`,
                                         `User`.`NUME`,
-                                        `User`.`PRENUME`
+                                        `User`.`PRENUME`,
+                                        `User_Grupa`.ID as IDGrupaUsers
                                     FROM `ULBSPlatform`.`User`,`ULBSPlatform`.`User_Grupa`,`ULBSPlatform`.`Grupa`
                                     WHERE `ULBSPlatform`.`User_Grupa`.`ID_USER`=`ULBSPlatform`.`User`.`ID`
                                     AND `ULBSPlatform`.`User_Grupa`.`ID_GRUPA`=`ULBSPlatform`.`Grupa`.`ID`
@@ -195,6 +196,21 @@ class Grupa {
                                         ');
            $stmt->bindParam(':idGrupa', $idGrupa, PDO::PARAM_INT);
             $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+
+        return $stmt->execute() ? true : false;
+ }
+ 
+    /**
+     * 
+     * Delete membru grupa <br>
+     * @param int $id
+     * @return bool
+     */
+    public function deleteGrupaMember($id) {
+        
+        $stmt = $this->db->prepare('DELETE from `ULBSPlatform`.`User_Grupa`
+                                    WHERE `ID` =:id;');
+           $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
         return $stmt->execute() ? true : false;
  }
