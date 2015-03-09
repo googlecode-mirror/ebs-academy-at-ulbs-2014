@@ -20,7 +20,7 @@ function myUrl($url='',$fullurl=false) {
 }
 
 function getUserType() {
-	return $_SESSION['user_type'];
+	return $_SESSION['type'];
 }
 
 function sendEmail($subject, $body, $from, $to) {
