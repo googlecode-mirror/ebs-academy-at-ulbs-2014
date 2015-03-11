@@ -1,4 +1,4 @@
-<div id="footer">
+<div class="footer">
 	<ul>
 		<li><a href="#">Contact</a></li>
 		<li><a href="#">FAQ</a></li>

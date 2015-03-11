@@ -1,4 +1,4 @@
-<div id="header">
+<div class="header">
     <?php
 	if(isset($_SESSION['uid'])) echo '<p> Welcome to ULBSPlatform User <a href="'.myUrl('main/logout').'">Deconectare</a></p>';
         else 

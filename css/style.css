@@ -76,19 +76,18 @@ th{
     height:25px;
 }
 
-#header{
-    margin-left:200px;
-    width:650px;
-    border-bottom:1px solid black;
+.header{
+    clear: both;
+    width: 100%;
+    border: 1px solid black;
     background-color: #0066CC;
     height: 50px;
     text-align: right;
-}
+} 
 
-#footer{
-    margin-left:200px;
-    width:650px;
-    border-top:1px solid black;
+.footer{
+    width: 100%;
+    border:1px solid black;
     background-color: #0066CC;
     height: 80px;
     text-align: center;
@@ -260,69 +259,63 @@ li{
     margin-left: 20px;
 }
 .noutati_box{
-    color:blue;
-    margin-left: 15px;
-    margin-bottom: 5px;
-    margin-top: 15px;
-    float:left;
-    width:640px;
-    
-    text-indent: 5px;
-    border: solid;
-    border-width: 1px;
+    position: relative;
+    margin: 15px 15px 5px 20px;
+    float: left;
+    width: 91.5%; 
+    text-indent: 5%;
+    border-width: thin;
     border-color: black;
-    BACKGROUND-COLOR: white;
-    border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
 }
 .noutati_box1{
-    float:left;
+ float:left;
  height: 20px;  
- width: 640px;
- border-bottom: solid;
- border-width: 1px;
- border-color: black;
- margin-bottom: 10px;
- 
-}
-.noutati_box2{
-    float:left;
- height: 20px;  
- width: 640px;
- border-top: solid;
- border-width: 1px;
- border-color: black;
- margin-top: 10px;
- 
+ width: 100%; 
+ border: 1px solid black;
+ border-radius: 5px;
 }
 
-.noutati_col1{
-    
+.noutati_col1{   
     float:left;
-    width: 250px;
-    
+    width: 45%;   
 }
-.noutati_col2{
-    
+.noutati_col2{   
     float:left;
-    width: 390px;
-    
+    width: 45%;     
 }
-#noutati_text{
+
+.noutati_box2 .noutati_col1{
+    float: left;
+    height: 20px;  
+    width: 45%;
+    border: 1px solid black;
+    margin-top: 20px; 
+    border-radius: 5px;
+    text-align: center;
+}
+
+.noutati_box2 .noutati_col2{
+    float: left;
+    height: 20px;  
+    width: 45%;
+    border: 1px solid black;
+    margin: 20px 0px 0px 60px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.noutati_text{
     float:left;
-   margin-left: 15px;
+    margin-left: 15px;
     text-indent: 5px;
-    width: 640px;
+    width: 91.5%;
 }
 .formNews{
-    color:blue;
-    margin-left: 15px;
-    margin-bottom: 5px;
-    margin-top: 15px;
-    float:left;
-    width:640px;
-    
-    text-indent: 5px;
-   
+    float: left;
+    color: blue;
+    margin: 15px 5px 15px 20px;
+    width: 91.5%;
+    text-indent: 5px; 
 }
