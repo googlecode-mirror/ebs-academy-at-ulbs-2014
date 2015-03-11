@@ -110,15 +110,15 @@ li{
     width: 9em; 
     border: 1px solid #808; 
     font-family: arial, verdana, sans-serif;  
-    font-size: 0.8em;
+    font-size: 1em;
     text-align: center; 
-    font-size: 70%;
     border-radius: 55px;
     text-shadow: 0 1px 1px rgba(0,0,0,0.2);
 
 }
 .meniu_list li{
     list-style: none;
+    width: 150px;
 }
 
 @media only screen and (max-width:960px) and (min-width:769px){
@@ -253,4 +253,76 @@ li{
 
 #suportCurs{
     width:350px;
+}
+
+#noutati{
+    width: 700px;
+    margin-left: 20px;
+}
+.noutati_box{
+    color:blue;
+    margin-left: 15px;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    float:left;
+    width:640px;
+    
+    text-indent: 5px;
+    border: solid;
+    border-width: 1px;
+    border-color: black;
+    BACKGROUND-COLOR: white;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+.noutati_box1{
+    float:left;
+ height: 20px;  
+ width: 640px;
+ border-bottom: solid;
+ border-width: 1px;
+ border-color: black;
+ margin-bottom: 10px;
+ 
+}
+.noutati_box2{
+    float:left;
+ height: 20px;  
+ width: 640px;
+ border-top: solid;
+ border-width: 1px;
+ border-color: black;
+ margin-top: 10px;
+ 
+}
+
+.noutati_col1{
+    
+    float:left;
+    width: 250px;
+    
+}
+.noutati_col2{
+    
+    float:left;
+    width: 390px;
+    
+}
+#noutati_text{
+    float:left;
+   margin-left: 15px;
+    text-indent: 5px;
+    width: 640px;
+}
+.formNews{
+    color:blue;
+    margin-left: 15px;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    float:left;
+    width:640px;
+    
+    text-indent: 5px;
+   
 }

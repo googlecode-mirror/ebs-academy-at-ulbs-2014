@@ -3,9 +3,10 @@
 	<head>
 		<title><?php echo $GLOBALS['sitename'];?></title>
 		<link rel="stylesheet" type="text/css" <?php echo 'href="'.WEB_DOMAIN.'/css/style.css"';?> />
-                <script type='text/javascript' <?php echo 'src="'.WEB_DOMAIN.'/js/jquery-2.1.3.js"';?>></script>
-                <script <?php echo 'src="'.WEB_DOMAIN.'/js/script.js"';?>></script> 
+                <script type='text/javascript' <?php echo 'src="' . WEB_DOMAIN . '/js/jquery-2.1.3.js"'; ?>></script>
+                <script <?php echo 'src="' . WEB_DOMAIN . '/js/script.js"'; ?>></script> 
                 <script src='https://www.google.com/recaptcha/api.js'></script>
+               <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
               
                 
             
@@ -24,8 +25,8 @@
 			<div id="main">
 				<?php echo (isset($msg) && is_array($msg)) ? implode("\n",$msg) : ''?>
                             
-                                <?php echo (isset($redirect) && is_array($redirect))?' Vei fi redirectat in 3 secunde'
-                                                                                    . header( "refresh:3;url=".  myUrl($redirect[0])   )
+                                <?php echo (isset($redirect) && is_array($redirect))?' Vei fi redirectat in 2 secunde'
+                                                                                    . header( "refresh:2;url=".  myUrl($redirect[0])   )
                                                                                     .' sau apasa <a href='.myUrl($redirect[0]).'>aici</a>':'';?>
 			</div>
 			
