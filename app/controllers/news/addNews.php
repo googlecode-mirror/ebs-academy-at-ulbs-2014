@@ -9,12 +9,12 @@ function _addNews() {
     
     if ($noutate->addNews($autor, $_POST['noutate'])) {
         $data['msg'][] = 'Noutatea a fost adaugata cu success';
-        $data['redirect'][] = 'main/showNews';
+        $data['redirect'][] = 'news/showNews';
 
         View::do_dump(VIEW_PATH . 'layout.php', $data);
     } else {
         $data['msg'][] = 'Noutatea nu a fost adaugata';
-        $data['redirect'][] = 'main/showNews';
+        $data['redirect'][] = 'news/showNews';
 
         View::do_dump(VIEW_PATH . 'layout.php', $data);
     }
