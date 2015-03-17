@@ -41,6 +41,17 @@ class Grupa {
             return false;
         }
     }
+    
+    public function getGrupaUserCurent($userID){
+        
+        $stmt = $this->db->prepare('SELECT `User_Grupa`.`ID_GRUPA`
+                                    FROM `ULBSPlatform`.`user_Grupa`
+                                    WHERE ID_USER=:id;');
+        $stmt->bindParam(':id', $userID, PDO::PARAM_INT);
+        
+        return $stmt->execute() ? $stmt->fetchAll(PDO::FETCH_ASSOC) : FALSE;
+        
+    }
 	
 	 /**
      * 
