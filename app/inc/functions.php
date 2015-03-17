@@ -23,6 +23,10 @@ function getUserType() {
 	return $_SESSION['type'];
 }
 
+function getUserID() {
+	return $_SESSION['uid'];
+}
+
 function sendEmail($subject, $body, $from, $to) {
 	require_once APP_PATH . 'helpers/PHPMailer-master/class.phpmailer.php';
         $mail = new PHPMailer();
