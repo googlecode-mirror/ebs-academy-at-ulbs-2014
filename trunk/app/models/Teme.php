@@ -26,4 +26,34 @@ class Teme {
         return $stmt->execute() ? $stmt->fetchAll(PDO::FETCH_ASSOC) : FALSE;
     }
     
+        public function addTema($idUser, $idGrupa, $idMaterie,$denumire,$descriere, $fisier='') {
+
+        $stmt = $this->db->prepare('INSERT INTO `ULBSPlatform`.`Teme_Licenta`
+                                            (
+                                            `ID_USER`,
+                                            `ID_GRUPA`,
+                                            `ID_MATERIE`,
+                                            `DENUMIRE_TEMA`,
+                                            `DESCRIERE_TEMA`,
+                                            `STATUS`,
+                                            `ANEXA`)
+                                            VALUES
+                                            (
+                                            :idUser,
+                                            :idGrupa,
+                                            :IdMaterie,
+                                            :denumire,
+                                            :descriere,
+                                            \'AVAILABLE\',
+                                            LOAD_FILE(:fisier));
+                                    ');
+        $stmt->bindParam(':fisier', $fisier);
+        $stmt->bindParam(':idUser', $idUser);
+        $stmt->bindParam(':idGrupa', $idGrupa);
+        $stmt->bindParam(':IdMaterie', $idMaterie);
+        $stmt->bindParam(':denumire', $denumire);
+        $stmt->bindParam(':descriere', $descriere);
+        return $stmt->execute() ? TRUE: FALSE;
+    }
+    
 }
