@@ -14,7 +14,10 @@ function _adminMaterii() {
 
             $materii = new Materii(getDbh());
             $materii_details = $materii->getMateriiDetails($materii_id[1]);
-           
+            
+            $user=new User(getdbh());
+            $result['profesori']=$user->fetchByType('profesor');
+            
             $result['materii'] = $materii_details;
             $data['msg'][] = View::do_fetch(VIEW_PATH . 'modifica_materii.tpl.php', $result);
             View::do_dump(VIEW_PATH . 'layout.php', $data);
@@ -59,6 +62,7 @@ function _adminMaterii() {
             reset($_POST);
             $key = key($_POST);
             $materii_id = explode("_", $key);
+            
 
             $materii = new Materii(getdbh());
             if ($materii->deleteMaterii($materii_id[1]) == true) {
@@ -78,9 +82,9 @@ function _adminMaterii() {
         case 'add':
 
             $materii = new Materii(getDbh());
-            $result = $materii->addMaterii($_POST['credite'], $_POST['denumire']);
+            $result = $materii->addMaterii($_POST['profesor'],$_POST['credite'], $_POST['denumire']);
             if ($result) {
-                $data['msg'][] = 'Materii a fost adaugata cu success';
+                $data['msg'][] = 'Materia a fost adaugata cu success';
                 $data['redirect'][] = 'administrare/addMaterii';
 
                 View::do_dump(VIEW_PATH . 'layout.php', $data);
