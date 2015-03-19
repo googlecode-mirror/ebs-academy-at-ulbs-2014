@@ -157,6 +157,7 @@ class User {
     public function fetchByType($type) {
 
         $stmt = $this->db->prepare('SELECT 
+            `User`.`ID`,
                                         `User`.`EMAIL`,
                                         `User`.`NUME`,
                                         `User`.`PRENUME`,

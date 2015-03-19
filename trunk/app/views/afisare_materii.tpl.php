@@ -2,7 +2,8 @@
 <table id="tabel">
     <form method="post" action="<?php echo myUrl('main/adminMaterii'); ?>">
         
-        <a href=<?php echo myUrl('administrare/addMaterii'); ?> >Adauga </a>
+        <a href=<?php echo myUrl('administrare/addMaterii'); ?> >Adauga </a><br/>
+        <a href=<?php echo myUrl('administrare/showAllMat'); ?> >Afiseaza toate materiile </a>
         <tr>
             <th></th>
             <th>Grupa</th>
@@ -13,6 +14,7 @@
         </tr>
 
         <?php
+        
         $lengthOfArray = count($materii);
         for ($key_Number = 0; $key_Number < $lengthOfArray; $key_Number++) {
             echo "<tr><td><input type=\"checkbox\" name=\"  checkbox_" . $materii[$key_Number]['ID'] . "\" value=\"id_" . $materii[$key_Number]['ID']."\">
@@ -29,7 +31,6 @@
         <tr>
             <td><input type="checkbox"  onclick="checkAll(this)"/></td>
             <td>Select all</td>
-            <td></td>
             <td></td>
             <td></td> 
             <td></td>

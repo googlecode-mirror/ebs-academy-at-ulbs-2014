@@ -6,42 +6,42 @@
         <tr>
             <td>Numele Grupei</td>
             <td>
-                <select name="sef_materii">
+                
+                <select name="idProf">
                     <?php
-                    $lengthOfArray = count($materii);
+                    $lengthOfArray = count($profesori);
+                    $select = $materii['ID_USER'];
+                    
                     for ($key_Number = 0; $key_Number < $lengthOfArray; $key_Number++) {
-                        $select = $materii[$key_Number]['GRUPA'];
-                        if ($select == $materii[0]['GRUPA']) {
-                            echo '<option selected="selected" value="' . $materii[$key_Number]['GRUPA'] .'">' . $materii[$key_Number]['GRUPA'] . '</option>';
+                        
+                       
+                        if ($select == $profesori[$key_Number]['ID']) {
+                            echo '<option selected="selected" value=' . $profesori[$key_Number]['ID'] . '>' . $profesori[$key_Number]['NUME'] . ' ' . $profesori[$key_Number]['PRENUME'] . '</option>';
                         } else {
-                            echo '<option value="' . $materii[$key_Number]['GRUPA'] . '">' . $materii[$key_Number]['GRUPA'] . '</option>';
+                             echo '<option value=' . $profesori[$key_Number]['ID'] . '>' . $profesori[$key_Number]['NUME'] . ' ' . $profesori[$key_Number]['PRENUME'] . '</option>';
                         }
                     }
                     ?>
                 </select>
             </td>
-            
+
         </tr>
         <tr>
             <td>Credite</td>
             <td><input type="text" name="credite" style="width:150px"
-                       value="<?php echo isset($materii[0]['CREDITE']) ? $materii[0]['CREDITE'] : ''; ?>"></td>
+                       value="<?php echo isset($materii['CREDITE']) ? $materii['CREDITE'] : ''; ?>"></td>
         </tr>
         <tr>
             <td>Denumire Materie</td>
-                <td><input type="text" name="denumire" style="width:150px"
-                       value="<?php echo isset($materii[0]['DENUMIRE']) ? $materii[0]['DENUMIRE'] : ''; ?>"></td>
-            
+            <td><input type="text" name="denumire" style="width:150px"
+                       value="<?php echo isset($materii['DENUMIRE']) ? $materii['DENUMIRE'] : ''; ?>"></td>
+
         </tr>
-        <tr>
-            <td>Semestru</td>
-            <td><input type="text" name="profil" style="width:150px"
-                       value="<?php echo isset($materii[0]['SEMESTRU']) ? $materii[0]['SEMESTRU'] : ''; ?>"></td>
-        </tr>
+
         <tr>    
 
-            <td><input type="hidden" name="idGrupa"
-                       value="<?php echo isset($materii[0]['ID']) ? $materii[0]['ID'] : ''; ?>" >
+            <td><input type="hidden" name="idMaterie"
+                       value="<?php echo isset($materii['ID']) ? $materii['ID'] : ''; ?>" >
                 <input type="submit" value="Submit"></td>
             <td><input type="reset" value="Reset"></td>
         </tr>
