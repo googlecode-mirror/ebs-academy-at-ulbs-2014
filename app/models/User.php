@@ -26,7 +26,7 @@ class User {
                                 FROM `ULBSPlatform`.`User`
                                 WHERE EMAIL=:email 
 				AND PAROLA=:pass
-				AND status = \'ACTIV\';');
+				AND status IN(\'ACTIV\',\'NO_GROUP\');');
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':pass', $pass, PDO::PARAM_STR);
         
