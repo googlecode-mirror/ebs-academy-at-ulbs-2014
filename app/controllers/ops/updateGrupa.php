@@ -3,7 +3,13 @@
 function _updateGrupa() {
     isUserLoggedIn();
     $grupa = new Grupa(getdbh());
-    $result = $grupa->updateGrupa($_POST['idGrupa'], $_POST['nume'], $_POST['an'], $_POST['sef_grupa'], $_POST['profil']);
+    if(isset($_POST['sef_grupa'])){
+    $result = $grupa->updateGrupa($_POST['idGrupa'], $_POST['nume'], $_POST['an'], $_POST['profil'],$_POST['sef_grupa']);
+    }
+ else {
+            $result = $grupa->updateGrupa($_POST['idGrupa'], $_POST['nume'], $_POST['an'], $_POST['profil']);
+
+    }
     if ($result) {
         $data['msg'][] = 'Grupa a fost modificata cu success';
         $data['redirect'][] = 'administrare/show_grup';

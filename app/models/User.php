@@ -67,7 +67,10 @@ class User {
                     `User`.`PRENUME`,
                     `User`.`TIP`,
                     `User`.`DATAADAUGARII`,
-                    `User`.`STATUS`
+                    `User`.`STATUS`,
+                   ( SELECT `User_Grupa`.`ID_GRUPA`
+                                    FROM `ULBSPlatform`.`user_Grupa`
+                                    WHERE ID_USER=:id) as ID_GRUPA
                 FROM `ULBSPlatform`.`User`
                 WHERE ID=:id;');
         $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);

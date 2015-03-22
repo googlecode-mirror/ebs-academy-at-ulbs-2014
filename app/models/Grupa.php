@@ -103,7 +103,7 @@ class Grupa {
 	 * @param String $profil
      * @return bool
      */
-    public function updateGrupa($id, $nume, $an, $sef_grupa, $profil) {
+    public function updateGrupa($id, $nume, $an, $profil,$sef_grupa='') {
         
         $stmt = $this->db->prepare('UPDATE `ULBSPlatform`.`Grupa`
                                     SET
@@ -236,14 +236,26 @@ class Grupa {
     public function checkRegister($idGrupa,$idUser) {
         
         $stmt = $this->db->prepare('SELECT * from `ULBSPlatform`.`User_Grupa`
-                                        (
-                                        `ID_USER`= :idUser
+                                        where
+                                        `ID_USER`= :idUser AND
                                         `ID_GRUPA`=:idGrupa;
                                       ');
            $stmt->bindParam(':idGrupa', $idGrupa, PDO::PARAM_INT);
             $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
 
-        return $stmt->execute() ? false : true;
+        return $stmt->execute() ? $stmt->fetch(PDO::FETCH_ASSOC) : false;
+ }
+    public function removeGroupMember($idGrupa,$idUser) {
+        
+        $stmt = $this->db->prepare('DELETE from `ULBSPlatform`.`User_Grupa`
+                                        where
+                                        `ID_USER`= :idUser AND
+                                        `ID_GRUPA`=:idGrupa;
+                                      ');
+           $stmt->bindParam(':idGrupa', $idGrupa, PDO::PARAM_INT);
+            $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+
+        return $stmt->execute() ? true :false;
  }
  
  
