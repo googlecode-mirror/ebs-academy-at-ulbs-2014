@@ -228,7 +228,7 @@ class Grupa {
  
    /**
      * 
-     * verificare daca studentul e inscris la materia respectiva<br>
+     * verificare daca studentul e inscris la grupa respectiva<br>
      * @param int $idGrupa
      * @param int $idUser
      * @return bool
@@ -256,6 +256,23 @@ class Grupa {
             $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
 
         return $stmt->execute() ? true :false;
+ }
+ 
+ /**
+     * 
+     * verificare daca studentul e inscris la o grupa<br>
+     * @param int $idUser
+     * @return bool
+     */
+    public function checkGroupRegistration($idUser) {
+        
+        $stmt = $this->db->prepare('SELECT * from `ULBSPlatform`.`User_Grupa`
+                                        where
+                                        `ID_USER`= :idUser;
+                                      ');
+            $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+
+        return $stmt->execute() ? $stmt->fetch(PDO::FETCH_ASSOC) : false;
  }
  
  
