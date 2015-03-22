@@ -4,7 +4,16 @@ function _updateUser() {
     isUserLoggedIn();
     $user = new User(getdbh());
     $grupa = new Grupa(getdbh());
-    if ($grupa->checkRegister($_POST['grupa'], $_POST['idUser']) == false) {
+   
+    if($_POST['currentGroup']>0 && $_POST['currentGroup']!=$_POST['grupa']){
+        
+        $remove=$grupa->removeGroupMember($_POST['currentGroup'], $_POST['idUser']);
+         
+    }
+    
+   $check=$grupa->checkRegister($_POST['grupa'], $_POST['idUser']);
+    if ($check == false) {
+        
         $addGrupa = $grupa->addGrupaMember($_POST['grupa'], $_POST['idUser']);
     }
     $result = $user->updateUser($_POST['idUser'], $_POST['email'], $_POST['nume'], $_POST['prenume'], $_POST['type'], $_POST['status']);
