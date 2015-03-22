@@ -3,6 +3,14 @@
 function _addGrupaMember() {
     isUserLoggedIn();
     $grupa = new Grupa(getdbh());
+    $checkGroup=$grupa->checkGroupRegistration($_POST['userID']);
+    if($checkGroup!=false){
+        if($checkGroup['ID_GRUPA']!=$_POST['grupaID']){
+            $delete=$grupa->deleteGrupaMember($checkGroup['ID']); 
+        }
+       
+       
+    }
     $check=$grupa->checkRegister($_POST['grupaID'], $_POST['userID']);
     if($check==false){
     $addMember = $grupa->addGrupaMember($_POST['grupaID'], $_POST['userID']);
