@@ -1,15 +1,15 @@
 <?php
 
 function _upload_files() {
+        
+        
     $target_dir = "uploads/";
     $uploadOk = 1;
     $i = 0;
     
-    foreach ($_FILES['fileToUpload']['name'] as $filename) {
-       
+    foreach ($_FILES['fileToUpload']['name'] as $index->$filename) {
         if ($filename) {
             $new_file_name = strtolower($filename);
-
             $FileType = pathinfo($new_file_name, PATHINFO_EXTENSION);
 
             // Check if file already exists
@@ -19,9 +19,9 @@ function _upload_files() {
             }
 
             $marime = $_FILES['fileToUpload']['size'];
-           
+            
 // Check file size
-            if ($marime[0] > 5000000) {
+            if ($marime[$index] > 5000000) {
                 echo "Sorry, your file is too large.";
                 $uploadOk = 0;
             }

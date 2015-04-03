@@ -1,5 +1,4 @@
-<div id="afisare_materii">
-<table id="tabel">
+<table class="table table-bordered">
     <form method="post" action="<?php echo myUrl('main/adminMaterii'); ?>">
         
         <a href=<?php echo myUrl('administrare/addMaterii'); ?> >Adauga </a><br/>
@@ -38,5 +37,4 @@
         </tr>
     </form>
 </table>
-</div>
 

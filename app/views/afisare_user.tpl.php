@@ -1,10 +1,9 @@
-
-<div id="afisare_user">
-    <table id="tabel">
+    <table class="table table-bordered">
+        <div class="table-responsive">
         <form method="post" action="<?php echo myUrl('main/adminUsers') ?>" > 
             <a href=<?php echo myUrl('main/addUser'); ?>>Adauga </a>
           
-
+            <threath>       
             <tr>
                 <th>Checkbox</th>
                 <th>Email</th>
@@ -16,7 +15,8 @@
                 <th>Modifica</th>
                 <th>Sterge</th>   
             </tr>
-
+            </threath>
+            <tbody>
             <?php
             $lengthOfArray = count($user);
             for ($key_Number = 0; $key_Number < $lengthOfArray; $key_Number++) {
@@ -38,13 +38,10 @@
             <tr>
                 <td><input type="checkbox"  onclick="checkAll(this)"/></td>
                 <td>Select all</td>
-                <td></td>
-                <td></td>
-                <td></td> 
-                <td></td>
-                <td></td> 
-                <td><input type="submit" value="Sterge tot" onclick="myFunction('delete_all');return checkForm('delete all');"></td> 
+                <td><input class="stergetot" type="submit" value="Sterge tot" onclick="myFunction('delete_all');return checkForm('delete all');"></td> 
             </tr>
+            </tbody>
         </form>
     </table>
+</div>
 </div>
