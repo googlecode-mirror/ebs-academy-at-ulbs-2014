@@ -12,7 +12,7 @@ else{
         $result['grupa']=$getGroups;
         
         $materie=new Materii(getdbh());
-        $getMaterii=$materie->fetchAll();
+        $getMaterii=$materie->fetchGroupaAndMateria();
         $result['materie']=$getMaterii;
                 
         $data['msg'][]=View::do_fetch(VIEW_PATH.'suport_curs_prof.php',$result);

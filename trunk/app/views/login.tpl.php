@@ -1,31 +1,21 @@
-
-        <form action="<?php echo myUrl('ops/check_login'); ?>" method="POST">
-            <div class="login_div">
-                <div class="login_text"> Va rugam introduceti datele de logare: </div>
-                <br />
-                <div>
-                    <div class="col_login1">Email</div>
-                    <div class="col_login2"><input type="email" name="email"/></div>
-
-                </div>
-                <div style="clear:both;">
-                    <div class="col_login1">Password</div>
-                    <div class="col_login2"><input type="password" name="password"/></div>
-
-                </div>
-
-                <div style="clear:both;">
-
-                    <div class="col_login1"><input type="submit" value="Trimite"/></div>
-                    <div class="col_login2"><input type="reset" value="Reseteaza"/></div>
-
-                </div>
-                <div style="clear:both;">
-                    <div class="col_login1"><a href="<?php echo myUrl('main/new'); ?>"> New Account</a></div>
-                    <div class="col_login2"><a href="<?php echo myUrl('main/recover'); ?>"> Recover Password</a></div>
-                    
-
-                </div>
-            </div>
-        </form>
-
+<h2> Va rugam introduceti datele de logare</h2>
+<form action="<?php echo myUrl('ops/check_login'); ?>" method="POST" role="form">   
+ <div class="col-lg-8 col-md-6 col-xs-4 col-sm-2">  
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control"  name="email" placeholder="Enter email">
+        </div>
+    
+        <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" name="password" placeholder="Enter password">          
+        </div>
+    
+        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="reset" class="btn btn-default">Reset</button>
+        
+        <button type="button" class="btn btn-link"><a href="<?php echo myUrl('main/recover'); ?>"> Recover Password</a></button>
+</div>
+</form>
+    
+    

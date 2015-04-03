@@ -3,19 +3,19 @@
     <table>
         <tr>
             <td>Email</td>
-            <td> <input type="email" name="email" style="width:150px"
+            <td> <input type="email" name="email" 
                         value="<?php echo isset($user[0]['EMAIL']) ? $user[0]['EMAIL'] : ''; ?>" /></td>
         </tr>
 
         <tr>
             <td>Nume</td>
-            <td><input type="text" name="nume" style="width:150px"
+            <td><input type="text" name="nume" 
                        value="<?php echo isset($user[0]['NUME']) ? $user[0]['NUME'] : ''; ?>" /></td>
         </tr>
 
         <tr>
             <td>Prenume</td>
-            <td><input type="text" name="prenume" style="width:150px"
+            <td><input type="text" name="prenume" 
                        value="<?php echo isset($user[0]['PRENUME']) ? $user[0]['PRENUME'] : ''; ?>" /></td>
         </tr>
 

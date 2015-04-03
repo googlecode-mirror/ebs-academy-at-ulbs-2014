@@ -1,5 +1,4 @@
-<div id="afisare_grupa">
-<table id="tabel">
+<table class="table table-bordered">
     <form method="post" action="<?php echo myUrl('main/adminGrupa'); ?>">
         
         <a href=<?php echo myUrl('administrare/addGrupa'); ?> >Adauga </a>
@@ -31,12 +30,7 @@
         <tr>
             <td><input type="checkbox"  onclick="checkAll(this)"/></td>
             <td>Select all</td>
-            <td></td>
-            <td></td>
-            <td></td> 
-            <td></td>
             <td><input type="submit" name="Sterge_tot" value="Sterge tot" onclick="myFunction('delete_all');return checkForm('delete all')"></td> 
         </tr>
     </form>
 </table>
-</div>

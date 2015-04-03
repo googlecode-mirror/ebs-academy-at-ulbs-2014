@@ -1,5 +1,11 @@
+       <form action="<?php echo myUrl('news/addNews'); ?>" method="POST" name="newsForm" role="form">
+        <textarea name="noutate" style="width: 640px; height: 150px; "></textarea><br />
+        <script>
+            CKEDITOR.replace( 'noutate' );
+        </script>
+        <input type="submit" name="submit" value="Trimite">
+       </form>
 
-<div id="noutati">
 <?php 
 
     $lengthOfArray = count($noutate);
@@ -7,18 +13,11 @@
             
            echo '<div class="noutati_box">
                
-                    <div class="noutati_box1">
-                    <div class="noutati_col1">'. $noutate[$key_Number]['AUTOR'].'</div>
-                    <div class="noutati_col2">'. $noutate[$key_Number]['DATA'].'</div>
-                    </div>
-                    
-                    <div class="noutati_text">'. $noutate[$key_Number]['MESAJ'].'</div>
-                        
-                    <div class="noutati_box2">
-                        <div class="noutati_col1"><a href="'.myUrl('news/adminNews/edit/'.$noutate[$key_Number]['ID']).'">Edit</a></div>
-                        <div class="noutati_col2"><a href="'.myUrl('news/adminNews/delete/'.$noutate[$key_Number]['ID']).'">Delete</a></div>
-                    </div>
-
+                    <div class="noutati_autor">'. $noutate[$key_Number]['AUTOR'].'</div>
+                    <div class="noutati_data">'. $noutate[$key_Number]['DATA'].'</div>
+                    <div class="noutati_mesaj">'. $noutate[$key_Number]['MESAJ'].'</div>
+                        <a href="'.myUrl('news/adminNews/edit/'.$noutate[$key_Number]['ID']).'">Edit</a>
+                        <a href="'.myUrl('news/adminNews/delete/'.$noutate[$key_Number]['ID']).'">Delete</a>
                 </div>';
             
         }
@@ -43,15 +42,7 @@
     
     
 
-    <div class="formNews">
-    <form action="<?php echo myUrl('news/addNews'); ?>" method="POST" name="newsForm">
-        <textarea name="noutate" style="width: 640px; height: 150px; "></textarea><br />
-        <script>
-            CKEDITOR.replace( 'noutate' );
-        </script>
-        <input type="submit" name="submit" value="Trimite">
+
+     
         
-    </form>
-        
-    </div>
-</div>
+

@@ -1,12 +1,9 @@
-<h3>Adauga document:</h3>
-
-<div id="suportCurs">
+<div class="col-lg-8 col-md-6 col-xs-4 col-sm-2">
+<h2>Adauga document:</h2>
     <form enctype="multipart/form-data" action="<?php echo myUrl('main/upload_files') ?>" method="POST">
- 
-
-        <div class="col_login2"> Grupa: </div>
-        <div class="col_login1">
-            <select name="grupaID">
+        <h4> Grupa: </h4>
+        
+            <select class="form-control">
                 <?php
                 $max = count($grupa);
 
@@ -14,13 +11,13 @@
                     echo '<option value="' . $grupa[$key_Number]['ID'] . '">' . $grupa[$key_Number]['NUME'] . '</option>\n';
                 }
                 ?>
-            </select><br>
+            </select>
             <input type="hidden" name="grupaID" value="<?php echo $grupaID;?>" >
-        </div> 
         
-        <div class="col_login2"> Materie: </div>
-        <div class="col_login1">
-            <select name="materieID">
+        
+        <h4> Materie: </h4>
+        
+            <select class="form-control">
                 <?php
                 $length = count($materie);
 
@@ -30,8 +27,7 @@
                 ?>
             </select><br>
             <input type="hidden" name="grupaID" value="<?php echo $materieID;?>" >
-        </div>
-    
+     
         <div>    
             
             <input type="file" name="fileToUpload[]" multiple="multiple"><br>
@@ -39,11 +35,10 @@
             <input type="file" name="fileToUpload[]" multiple="multiple"><br>
         </div>
         
-       
-        <div class="col_login2" style="margin-left: 30px;"> <input type="submit" value="Send file"> </div>
-</form>
-</div>    
-        
+    </form>  
+        <input class="btn btn-default" type="submit" value="Submit">
+    
         <div id="documente">
-            <h3>Documente:</h3> 
+            <h2>Documente:</h2> 
         </div>
+</div>
