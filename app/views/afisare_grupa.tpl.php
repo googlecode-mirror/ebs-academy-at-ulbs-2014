@@ -3,7 +3,7 @@
         
         <a href=<?php echo myUrl('administrare/addGrupa'); ?> >Adauga </a>
         <tr>
-            <th></th>
+            <th>Select all</th>
             <th>Nume</th>
             <th>An</th>
             <th>Sef grupa</th>
@@ -29,7 +29,6 @@
         <input type="hidden" name="actiune" id="actiune">
         <tr>
             <td><input type="checkbox"  onclick="checkAll(this)"/></td>
-            <td>Select all</td>
             <td><input type="submit" name="Sterge_tot" value="Sterge tot" onclick="myFunction('delete_all');return checkForm('delete all')"></td> 
         </tr>
     </form>

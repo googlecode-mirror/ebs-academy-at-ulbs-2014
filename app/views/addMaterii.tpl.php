@@ -1,26 +1,21 @@
 
  <form action="<?php echo myUrl('main/adminMaterii'); ?>" method="POST">
-            <div>
-                <div class="login_text"> Va rugam introduceti noua materie </div>
-                <br />
-                
-          
-                
-                 <div style="clear:both;">
-                    <div class="col_grupa1">Nume Materie</div>
-                    <div class="col_grupa2"><input type="text" name="denumire"/></div>
+     <div class="form-group">
+                <h3> Va rugam introduceti noua materie </h3>
 
+                <div>
+                    <label>Numele Materiei:</label>
+                    <input type="text" name="nume" class="form-control">
                 </div>
-                 <div style="clear:both;">
-                    <div class="col_grupa1">Credite</div>
-                    <div class="col_grupa2"><input type="number" name="credite"/></div>
-
+                              
+                <div>
+                    <label>Credite:</label>
+                    <input type="text" name="profil" class="form-control">
                 </div>
-                <div style="clear:both;">
-                    <div class="col_grupa1">Profesor</div>
-                    <div class="col_grupa2">
-                        <select name="profesor" required="required">
-                          
+      
+                <label>Profesor:</label>   <br>
+                <select class="selectpicker">
+                    
                            <?php
                             $lengthOfArray = count($profesori);
                              for ($key_Number = 0; $key_Number < $lengthOfArray; $key_Number++) {
@@ -29,17 +24,11 @@
                              }
                            ?>
                            
-                        </select>
-                    </div>
-
-                </div>
-
-                <div style="clear:both;">
-                       <input type="hidden" name="actiune" value="add"/>
-                    <div class="col_grupa1"><input type="submit" value="Trimite"/></div>
-                    <div class="col_grupa2"><input type="reset" value="Reseteaza"/></div>
-
-                </div>
-                
+                  </select>
+                <br>
+                <br>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="reset" class="btn btn-default">Reset</button>
+           
             </div>
         </form>

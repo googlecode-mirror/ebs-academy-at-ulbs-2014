@@ -1,32 +1,26 @@
 
  <form action="<?php echo myUrl('main/adminGrupa'); ?>" method="POST">
-            <div>
-                <div class="login_text"> Va rugam introduceti noua grupa </div>
-                <br />
+     <div class="form-group">
+                <h3> Va rugam introduceti noua grupa </h3>
+
                 <div>
-                    <div class="col_grupa1">Numele Grupei</div>
-                    <div class="col_grupa2"><input type="text" name="nume"/></div>
-
+                    <label>Numele Grupei:</label>
+                    <input type="text" name="nume" class="form-control">
                 </div>
-          
-                
-                 <div style="clear:both;">
-                    <div class="col_grupa1">Anul</div>
-                    <div class="col_grupa2"><input type="number" name="an" min="1" max="6"/></div>
-
+                    
+                <div>
+                    <label>Anul:</label>
+                    <input type="number" name="an" min="1" max="6" class="form-control">
                 </div>
-                 <div style="clear:both;">
-                    <div class="col_grupa1">Profil</div>
-                    <div class="col_grupa2"><input type="text" name="profil"/></div>
-
+                               
+                <div>
+                    <label>Profil:</label>
+                    <input type="text" name="profil" class="form-control">
                 </div>
 
-                <div style="clear:both;">
-                       <input type="hidden" name="actiune" value="add"/>
-                    <div class="col_grupa1"><input type="submit" value="Trimite"/></div>
-                    <div class="col_grupa2"><input type="reset" value="Reseteaza"/></div>
-
-                </div>
-                
+                <br>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="reset" class="btn btn-default">Reset</button>
+           
             </div>
         </form>

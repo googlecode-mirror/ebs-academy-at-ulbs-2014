@@ -1,18 +1,11 @@
-<div id="afisare_user">
-    <table id="tabel">
+
         <form method="POST" action="<?php echo myUrl('main/adminMaterii'); ?>" >
+            <tr>       
+                <th> <a href=<?php echo myUrl('administrare/addMaterii'); ?> >Adauga materie </a><br/></th>       
             <tr>
-                
-                <th></th>
-                <th></th>
-                <th> <a href=<?php echo myUrl('administrare/addMaterii'); ?> >Adauga materie </a><br/></th>
-                <th></th>
-                <th></th>
+ <table class="table table-bordered">               
             <tr>
-                
-            <tr>
-                <th>Nr Crt.</th>
-                
+                <th>Select all</th>
                 <th>Numele materiei</th>
                 <th>Credite</th>
                <th>Sterge</th>
@@ -34,12 +27,8 @@
             ?>
             <tr>
                 <td><input type="checkbox" onclick="checkAll(this)"/></td>
-                <td>Selecteaza toate materiile!</td>
-                <td></td>
                 <td><input type="submit" name="Sterge_tot" value="Sterge tot" onclick="myFunction('delete_all');return checkForm('delete all')"></td>
-                <td></td>
             </tr>
             <input type="hidden" name="actiune" id="actiune">
         </form>
     </table>
-</div>
