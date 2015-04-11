@@ -5,7 +5,7 @@
           
             <threath>       
             <tr>
-                <th>Checkbox</th>
+                <th>Select all</th>
                 <th>Email</th>
                 <th>Nume</th>
                 <th>Prenume</th>
@@ -37,7 +37,6 @@
             <input type="hidden" name="actiune" id="actiune">
             <tr>
                 <td><input type="checkbox"  onclick="checkAll(this)"/></td>
-                <td>Select all</td>
                 <td><input class="stergetot" type="submit" value="Sterge tot" onclick="myFunction('delete_all');return checkForm('delete all');"></td> 
             </tr>
             </tbody>

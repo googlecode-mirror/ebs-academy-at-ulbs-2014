@@ -4,7 +4,7 @@
         <a href=<?php echo myUrl('administrare/addMaterii'); ?> >Adauga </a><br/>
         <a href=<?php echo myUrl('administrare/showAllMat'); ?> >Afiseaza toate materiile </a>
         <tr>
-            <th></th>
+            <th>Select all</th>
             <th>Grupa</th>
             <th>Denumire</th>
             <th>Credite</th>
@@ -29,10 +29,6 @@
         <input type="hidden" name="actiune" id="actiune">
         <tr>
             <td><input type="checkbox"  onclick="checkAll(this)"/></td>
-            <td>Select all</td>
-            <td></td>
-            <td></td> 
-            <td></td>
             <td><input type="submit" name="Sterge_tot" value="Sterge tot" onclick="myFunction('detele_all'); checkForm('delete_all')"></td> 
         </tr>
     </form>
