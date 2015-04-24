@@ -300,6 +300,27 @@ class User {
         $stmt->bindParam(':prenume', $prenume, PDO::PARAM_STR);
         return $stmt->execute() ? $user_id = $this->db->lastInsertId() : false;
     }
+    
+    public function addUserByProf($nume, $prenume) {
+        $stmt = $this->db->prepare('INSERT INTO `ULBSPlatform`.`User`
+                                        (
+                                        `NUME`,
+                                        `PRENUME`,
+                                        `TIP`,
+                                        `DATAADAUGARII`,
+                                        `STATUS`)
+                                        VALUES
+                                        (
+                                        :nume,
+                                        :prenume,
+                                        \'student\',
+                                        now(),
+                                        \'new\');');
+        
+        $stmt->bindParam(':nume', $nume, PDO::PARAM_STR);
+        $stmt->bindParam(':prenume', $prenume, PDO::PARAM_STR);
+        return $stmt->execute() ? $user_id = $this->db->lastInsertId() : false;
+    }
 
     /**
      * 

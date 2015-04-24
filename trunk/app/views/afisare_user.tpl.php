@@ -1,7 +1,7 @@
     <table class="table table-bordered">
         <div class="table-responsive">
         <form method="post" action="<?php echo myUrl('main/adminUsers') ?>" > 
-            <a href=<?php echo myUrl('main/addUser'); ?>>Adauga </a>
+            <a href=<?php echo myUrl('administrare/addUser'); ?>>Adauga </a>
           
             <threath>       
             <tr>
